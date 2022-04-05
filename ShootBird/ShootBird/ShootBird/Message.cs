@@ -1,10 +1,16 @@
 ﻿namespace ShootBird
 {
+    /// <summary>
+    /// Приветственные сообщения
+    /// </summary>
    sealed internal class Message
     {
-        public string? WelcomeMessageForPlayer { get; set; }
-        public string? GameconditionMessage { get; set; }
-        public static  Message SendWelcomeMessageForPlayer()
+
+        /// <summary>
+        /// Вывод сообщений на конслоль
+        /// </summary>
+        /// <returns></returns>
+        public static async void SendWelcomeMessageForPlayer()
         {
 
             var welcomeMessageForPlayer = "Приветствую тебя!" +
@@ -16,7 +22,9 @@
                 "\nОдна жизнь. Одна попытка убить монстра!" +
                 "\nА теперь перейдем к твоему герою собственно.";
 
-            return new Message { WelcomeMessageForPlayer=welcomeMessageForPlayer, GameconditionMessage=gameconditionMessage};
+            Console.WriteLine(welcomeMessageForPlayer);
+            await Task.Delay(300);
+            Console.WriteLine(gameconditionMessage);
 
         }
     }

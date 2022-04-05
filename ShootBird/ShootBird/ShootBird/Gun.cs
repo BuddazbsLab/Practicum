@@ -1,5 +1,8 @@
 ﻿namespace ShootBird
 {
+    /// <summary>
+    /// Оружие
+    /// </summary>
     internal class Gun : IGun
     {
         private int startPlayEnemy;
@@ -20,6 +23,10 @@
         private int EndDamageRange { get { return endDamageRange; } }
         public int Cartridge { get { return (int)сartridge; } }
 
+        /// <summary>
+        /// Производим выстрел во врага
+        /// </summary>
+        /// <returns>Выводим результат выстрела</returns>
         public async Task Shot()
         {
             Random random = new();
@@ -42,7 +49,9 @@
             else { Console.WriteLine("Враг остался жив а Вы умерли. Кек :)"); }
 
         }
-
+        /// <summary>
+        /// Статистика монстра
+        /// </summary>
         private void ShowDamageHealth()
         {
             Console.WriteLine($"Монстр получил урон! Здоровье: {this.startPlayEnemy} хп.");

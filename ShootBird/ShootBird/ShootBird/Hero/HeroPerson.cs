@@ -1,5 +1,8 @@
 ﻿namespace ShootBird
 {
+    /// <summary>
+    /// Класс героя
+    /// </summary>
     internal class HeroPerson : IHeroPerson
     {
         private readonly int heroHelth;
@@ -23,7 +26,10 @@
         public string Species { get { return this.species; } }
         public string HeroGender { get { return this.heroGender; } }
 
-
+        /// <summary>
+        /// Создание героя
+        /// </summary>
+        /// <returns>Возращает результат создания героя</returns>
         public Task CreateHeroAsync()
         {
             Console.WriteLine($"Поздравлеям!" +

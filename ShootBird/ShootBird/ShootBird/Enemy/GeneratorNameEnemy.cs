@@ -1,7 +1,15 @@
 ﻿namespace ShootBird
 {
+    /// <summary>
+    /// Генератор имен
+    /// </summary>
     internal class GeneratorNameEnemy
     {
+        /// <summary>
+        /// Генерация имени на основе переданной длиный имени
+        /// </summary>
+        /// <param name="len">Длина имени</param>
+        /// <returns></returns>
         public static string GenerateName(int len)
         {
             Random r = new();

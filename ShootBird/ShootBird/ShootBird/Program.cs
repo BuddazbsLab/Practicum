@@ -2,12 +2,9 @@
 using ShootBird;
 
 
+Message.SendWelcomeMessageForPlayer();
 
-
-
-Console.WriteLine(Message.SendWelcomeMessageForPlayer().WelcomeMessageForPlayer);
-Console.WriteLine(Message.SendWelcomeMessageForPlayer().GameconditionMessage);
-
+//TODO : Вынести эту пижню отдельно
 await Task.Delay(TimeSpan.FromMilliseconds(15000));
 Console.WriteLine("Введите имя персонажа: ");
 string? heroName = Console.ReadLine();
@@ -20,7 +17,7 @@ string? species = Console.ReadLine();
 
 Console.WriteLine("Введите гендерную предрасположенность персонажа: ");
 string? heroGender = Console.ReadLine();
-
+//
 
 HeroPerson person = new(heroName, heroAge, heroGender, species);
 await Task.Delay(TimeSpan.FromMilliseconds(1500));

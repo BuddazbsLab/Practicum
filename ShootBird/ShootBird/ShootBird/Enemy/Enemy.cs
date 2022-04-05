@@ -1,5 +1,8 @@
 ﻿namespace ShootBird
 {
+    /// <summary>
+    /// Класс Монстра
+    /// </summary>
     internal class HeroEnemy : IEnemy
     {
         private readonly int enemyHelth;
@@ -15,7 +18,10 @@
         public string EnemyName { get { return this.enemyName; } }
 
 
-
+        /// <summary>
+        /// Создание монтсра
+        /// </summary>
+        /// <returns>Возращает результат создания монтсра </returns>
         public Task CreateEnemyAsync()
         {
             Console.WriteLine($"Внимание!" +
