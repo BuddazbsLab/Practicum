@@ -8,10 +8,10 @@ using ShootBird.Randomizer.RandWeapon;
 Message.SendWelcomeMessageForPlayer();
 await Task.Delay(TimeSpan.FromSeconds(10));
 // Данные для создания героя 
-string? heroName = HeroData.InputName();
+string heroName = HeroData.InputName();
 int heroAge = HeroData.InputAge();
-string? heroGender = HeroData.InputHeroGender();
-string? species = HeroData.InputSpecies();
+string heroGender = HeroData.InputHeroGender();
+string species = HeroData.InputSpecies();
 
 // Создаем героя
 HeroPerson person = new(heroName, heroAge, heroGender, species);
