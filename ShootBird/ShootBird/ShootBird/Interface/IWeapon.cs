@@ -1,7 +1,7 @@
 ﻿
 namespace ShootBird
 {
-    internal interface IGun
+    internal interface IWeapon
     {
         int Cartridge { get; }
         int StartDamageRange { get; }

@@ -1,49 +1,51 @@
 ﻿
 using ShootBird;
+using ShootBird.Hero;
+using ShootBird.Randomizer.RandWeapon;
 
 
+// Приветсвенное сообщение
 Message.SendWelcomeMessageForPlayer();
+await Task.Delay(TimeSpan.FromSeconds(10));
+// Данные для создания героя 
+string? heroName = HeroData.InputName();
+int heroAge = HeroData.InputAge();
+string? heroGender = HeroData.InputHeroGender();
+string? species = HeroData.InputSpecies();
 
-//TODO : Вынести эту пижню отдельно
-await Task.Delay(TimeSpan.FromMilliseconds(15000));
-Console.WriteLine("Введите имя персонажа: ");
-string? heroName = Console.ReadLine();
-
-Console.WriteLine("Введите возраст персонажа: ");
-int heroAge = Convert.ToInt32(Console.ReadLine());
-
-Console.WriteLine("Введите рассу персонажа: ");
-string? species = Console.ReadLine();
-
-Console.WriteLine("Введите гендерную предрасположенность персонажа: ");
-string? heroGender = Console.ReadLine();
-//
-
+// Создаем героя
 HeroPerson person = new(heroName, heroAge, heroGender, species);
-await Task.Delay(TimeSpan.FromMilliseconds(1500));
+await Task.Delay(TimeSpan.FromSeconds(2));
 person.CreateHeroAsync().Wait();
 
-await Task.Delay(TimeSpan.FromMilliseconds(5000));
+//Первый шаг героя
+await Task.Delay(TimeSpan.FromSeconds(2));
 Console.WriteLine("Вы сделали свой первый шаг.");
-await Task.Delay(TimeSpan.FromMilliseconds(8000));
+await Task.Delay(TimeSpan.FromSeconds(8));
 
+// Генерим случайное имя монтсра
 string enemyName = GeneratorNameEnemy.GenerateName(7);
 HeroEnemy heroEnemy = new(enemyName);
+// Создаем монстра
 heroEnemy.CreateEnemyAsync().Wait();
+await Task.Delay(TimeSpan.FromSeconds(15));
 
-await Task.Delay(TimeSpan.FromMilliseconds(15000));
-Console.WriteLine("Врага нужно срочно убить или он убьет Вас! \n Сколько выстрелов сделать?");
-int? сartridge = Convert.ToInt32(Console.ReadLine());
+//Задаем колличество выстрелов
+int сartridge = HeroData.InputCartridge();
 
-
+// Устанавливаем показатель здоровья монстра
 int startPlayEnemy = heroEnemy.StartEnemyHealth();
 Console.WriteLine($"Монстр начал идти к Вам! \nПоказатель здоровья: {startPlayEnemy} хп.");
-await Task.Delay(TimeSpan.FromMilliseconds(3000));
+await Task.Delay(TimeSpan.FromSeconds(3));
 
 
-Gun gun = new(startPlayEnemy, сartridge);
-await Task.Delay(TimeSpan.FromMilliseconds(1500));
-await gun.Shot();
+
+//Присваиваем случайное оружие герою
+RandomWeapon randomWeapon = new(startPlayEnemy, сartridge);
+var weaponHero = randomWeapon.TakeWeapon();
+// Стреляем по монстру
+await Task.Delay(TimeSpan.FromSeconds(2));
+await weaponHero.Shot();
 
 
 Console.ReadLine();

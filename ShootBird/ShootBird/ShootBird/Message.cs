@@ -20,10 +20,20 @@
 
             var gameconditionMessage = "\nУсловия игры: " +
                 "\nОдна жизнь. Одна попытка убить монстра!" +
+                "\nСлучайным образом выдается оружие. Список:" +
+                "\nБита" +
+                "\nПистолет" +
+                "\nАрбалет" +
+                "\nЛопата" +
+                "\nАвтомат" +
+                "\nПулемет" +
+                "\nЛук" +
+                "\nДробовик" +
                 "\nА теперь перейдем к твоему герою собственно.";
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(welcomeMessageForPlayer);
             await Task.Delay(300);
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(gameconditionMessage);
 
         }

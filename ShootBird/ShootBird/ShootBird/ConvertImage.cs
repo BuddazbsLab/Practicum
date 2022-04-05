@@ -6,9 +6,14 @@ namespace ShootBird
 {
     internal class ImageToAnsi
     {
-        public void ConvertImage()
+        private readonly char[] _chars = { '.', ',', ':', '+', '*', '?', '%', '$', '#', '@' };
+        public ImageToAnsi()
         {
 
         }
+        //public char[][] ConvertImage()
+        //{
+
+        //}
     }
 }

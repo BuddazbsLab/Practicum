@@ -1,7 +1,7 @@
 ﻿namespace ShootBird
 {
     /// <summary>
-    /// Класс Монстра
+    /// Класс Монстра.
     /// </summary>
     internal class HeroEnemy : IEnemy
     {
@@ -19,9 +19,9 @@
 
 
         /// <summary>
-        /// Создание монтсра
+        /// Создание монтсра.
         /// </summary>
-        /// <returns>Возращает результат создания монтсра </returns>
+        /// <returns>Возращает результат создания монтсра.</returns>
         public Task CreateEnemyAsync()
         {
             Console.WriteLine($"Внимание!" +
@@ -31,7 +31,10 @@
             return Task.CompletedTask;
         }
 
-
+        /// <summary>
+        /// Стартовое значение зоровья.
+        /// </summary>
+        /// <returns>Значение здоровья монстра.</returns>
         public int StartEnemyHealth()
         {
             return EnemyHelth;
