@@ -1,45 +1,51 @@
 ﻿namespace ShootBird
 {
-    internal class Gun
+    internal class Gun : IGun
     {
-        private int startPlayBird;
+        private int startPlayEnemy;
         private readonly int? сartridge;
         private readonly int startDamageRange;
         private readonly int endDamageRange;
 
-        public Gun(int startPlayBird, int? сartridge)
+        public Gun(int startPlayEnemy, int? сartridge)
         {
-            this.startPlayBird = startPlayBird;
+            this.startPlayEnemy = startPlayEnemy;
             this.startDamageRange = 1;
             this.endDamageRange = 5;
             this.сartridge = сartridge;
         }
 
+        public int StartPlayEnemy { get { return startPlayEnemy; } }
+        public int StartDamageRange { get { return startDamageRange; } }
+        private int EndDamageRange { get { return endDamageRange; } }
+        public int Cartridge { get { return (int)сartridge; } }
+
         public async Task Shot()
         {
             Random random = new();
-            
-            for (int i = 0; i < this.сartridge; i++)
+
+            for (int i = 0; i < Cartridge; i++)
             {
-                int randomDamage = random.Next(this.startDamageRange, this.endDamageRange);
-                int damage = this.startPlayBird - randomDamage;
-                Console.WriteLine($"Выстрел {i+1}");
+                int randomDamage = random.Next(StartDamageRange, EndDamageRange);
+                int damage = StartPlayEnemy - randomDamage;
+                Console.WriteLine($"Выстрел {i + 1}");
                 Console.Beep();
 
-                await Task.Delay(TimeSpan.FromMilliseconds(800));
-                if (this.startPlayBird > 0) { this.startPlayBird = damage; }
+                await Task.Delay(TimeSpan.FromMilliseconds(400));
+                if (StartPlayEnemy > 0) { this.startPlayEnemy = damage; }
 
                 ShowDamageHealth();
-                await Task.Delay(TimeSpan.FromMilliseconds(800));                
+                await Task.Delay(TimeSpan.FromMilliseconds(400));
+                if (StartPlayEnemy <= 0) break;
             }
-            if (this.startPlayBird <= 0) { Console.WriteLine("Вы выйграли");}
-            else { Console.WriteLine("Враг остался жив а Вы умерли. Кек :)");}
+            if (StartPlayEnemy <= 0) { Console.WriteLine("Вы выйграли"); }
+            else { Console.WriteLine("Враг остался жив а Вы умерли. Кек :)"); }
 
         }
 
         private void ShowDamageHealth()
         {
-            Console.WriteLine($"Нанесен урон врагу. Здоровье: {this.startPlayBird} хп.");
+            Console.WriteLine($"Монстр получил урон! Здоровье: {this.startPlayEnemy} хп.");
         }
 
 

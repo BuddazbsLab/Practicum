@@ -7,14 +7,14 @@
         public static  Message SendWelcomeMessageForPlayer()
         {
 
-            var welcomeMessageForPlayer = "Приветствую тебя мой друг." +
-                "\nВ этой игре мы будем стрелять по птицам." +
-                "\nP.S. Ни одна птица не пострадала в этой игре.";
+            var welcomeMessageForPlayer = "Приветствую тебя!" +
+                "\nТы попал в петлю и нужно выбраться из нее убивая монстров." +
+                "\nP.S." +
+                "\nНи один монстр не пострадала в этой игре. Просто они позже придут за тобой :)";
 
-            var gameconditionMessage = "Условия игры: " +
-                "\nУ тебя только одна попытка убить с первого раза." +
-                "\nУ тебя ограниченное колличество паторонов:" +
-                "\n Пистолет: 50 шт.";
+            var gameconditionMessage = "\nУсловия игры: " +
+                "\nОдна жизнь. Одна попытка убить монстра!" +
+                "\nА теперь перейдем к твоему герою собственно.";
 
             return new Message { WelcomeMessageForPlayer=welcomeMessageForPlayer, GameconditionMessage=gameconditionMessage};
 

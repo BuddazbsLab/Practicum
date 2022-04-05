@@ -7,34 +7,44 @@ using ShootBird;
 
 Console.WriteLine(Message.SendWelcomeMessageForPlayer().WelcomeMessageForPlayer);
 Console.WriteLine(Message.SendWelcomeMessageForPlayer().GameconditionMessage);
-await Task.Delay(TimeSpan.FromMilliseconds(1000));
-Console.Clear();
-await Task.Delay(TimeSpan.FromMilliseconds(1500));
+
+await Task.Delay(TimeSpan.FromMilliseconds(15000));
 Console.WriteLine("Введите имя персонажа: ");
-string? playerName = Console.ReadLine();
-Console.Clear();
+string? heroName = Console.ReadLine();
+
+Console.WriteLine("Введите возраст персонажа: ");
+int heroAge = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine("Введите рассу персонажа: ");
+string? species = Console.ReadLine();
+
+Console.WriteLine("Введите гендерную предрасположенность персонажа: ");
+string? heroGender = Console.ReadLine();
+
+
+HeroPerson person = new(heroName, heroAge, heroGender, species);
 await Task.Delay(TimeSpan.FromMilliseconds(1500));
-Console.WriteLine("Введите колличество выстрелов: ");
+person.CreateHeroAsync().Wait();
+
+await Task.Delay(TimeSpan.FromMilliseconds(5000));
+Console.WriteLine("Вы сделали свой первый шаг.");
+await Task.Delay(TimeSpan.FromMilliseconds(8000));
+
+string enemyName = GeneratorNameEnemy.GenerateName(7);
+HeroEnemy heroEnemy = new(enemyName);
+heroEnemy.CreateEnemyAsync().Wait();
+
+await Task.Delay(TimeSpan.FromMilliseconds(15000));
+Console.WriteLine("Врага нужно срочно убить или он убьет Вас! \n Сколько выстрелов сделать?");
 int? сartridge = Convert.ToInt32(Console.ReadLine());
 
 
-
-Person person = new(playerName);
-Console.Clear();
-
-await Task.Delay(TimeSpan.FromMilliseconds(1500));
-person.CreatePersonAsync().Wait();
-Console.Clear();
-
-
-
-Bird bird = new();
-int startPlayBird = bird.StartHealth();
-Console.WriteLine($"Взлетела злобная птица \nПоказатель здоровья: {startPlayBird} хп.");
+int startPlayEnemy = heroEnemy.StartEnemyHealth();
+Console.WriteLine($"Монстр начал идти к Вам! \nПоказатель здоровья: {startPlayEnemy} хп.");
 await Task.Delay(TimeSpan.FromMilliseconds(3000));
-Console.Clear();
 
-Gun gun = new(startPlayBird, сartridge);
+
+Gun gun = new(startPlayEnemy, сartridge);
 await Task.Delay(TimeSpan.FromMilliseconds(1500));
 await gun.Shot();
 
