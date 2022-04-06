@@ -1,4 +1,6 @@
-﻿namespace ShootBird.Gun
+﻿using ShootBird.Sound.WeaponSound;
+
+namespace ShootBird.Gun
 {
     internal class BaseballBat : IWeapon
     {
@@ -34,9 +36,10 @@
                 int damage = StartPlayEnemy - randomDamage;
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Удар битой {i + 1}");
-                Console.Beep();
+                GunSound gunSound = new();
+                gunSound.HandGunSound();
 
-                await Task.Delay(TimeSpan.FromMilliseconds(400));
+                await Task.Delay(TimeSpan.FromMilliseconds(800));
                 if (StartPlayEnemy > 0) { this.startPlayEnemy = damage; }
 
                 ShowDamageHealth();

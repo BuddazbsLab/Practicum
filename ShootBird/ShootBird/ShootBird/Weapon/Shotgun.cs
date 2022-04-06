@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShootBird.Sound.WeaponSound;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,9 +41,10 @@ namespace ShootBird.Gun
                 int damage = StartPlayEnemy - randomDamage;
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Выстрел из дробовика {i + 1}");
-                Console.Beep();
+                GunSound gunSound = new();
+                gunSound.HandGunSound();
 
-                await Task.Delay(TimeSpan.FromMilliseconds(400));
+                await Task.Delay(TimeSpan.FromMilliseconds(800));
                 if (StartPlayEnemy > 0) { this.startPlayEnemy = damage; }
 
                 ShowDamageHealth();

@@ -25,7 +25,7 @@ namespace ShootBird.Hero
 
         public static string InputSpecies()
         {
-            Console.WriteLine("Введите рассу персонажа: ");
+            Console.WriteLine("Введите расу персонажа: ");
             string species = Console.ReadLine();
             return species;
         }

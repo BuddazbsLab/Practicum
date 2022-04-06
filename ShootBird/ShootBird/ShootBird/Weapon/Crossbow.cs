@@ -1,5 +1,7 @@
 ﻿
 
+using ShootBird.Sound.WeaponSound;
+
 namespace ShootBird.Weapon
 {
     internal class Crossbow : IWeapon
@@ -36,9 +38,10 @@ namespace ShootBird.Weapon
                 int damage = StartPlayEnemy - randomDamage;
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Выстрел из арбалета {i + 1}");
-                Console.Beep();
+                GunSound gunSound = new();
+                gunSound.HandGunSound();
 
-                await Task.Delay(TimeSpan.FromMilliseconds(400));
+                await Task.Delay(TimeSpan.FromMilliseconds(800));
                 if (StartPlayEnemy > 0) { this.startPlayEnemy = damage; }
 
                 ShowDamageHealth();

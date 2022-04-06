@@ -20,17 +20,17 @@
             this.species = species;
         }
 
-        public int Helth { get { return this.heroHelth; } }
-        public string HeroName { get { return this.heroName; } }
-        public int HeroAge { get { return this.heroAge; } }
-        public string Species { get { return this.species; } }
-        public string HeroGender { get { return this.heroGender; } }
+        public int Helth => this.heroHelth;
+        public string HeroName => this.heroName;
+        public int HeroAge => this.heroAge;
+        public string Species => this.species;
+        public string HeroGender => this.heroGender;
 
         /// <summary>
         /// Создание героя
         /// </summary>
         /// <returns>Возращает результат создания героя</returns>
-        public Task CreateHeroAsync()
+        public async Task CreateHeroAsync()
         {
             Console.WriteLine($"Поздравлеям!" +
              $"\nСоздан новый Герой: " +
@@ -39,7 +39,6 @@
              $"\nГендерная принадлежность: {HeroGender} " +
              $"\nРаса: {Species} " +
              $"\nЗдоровье: {Helth}");
-            return Task.CompletedTask;
         }
     }
 }

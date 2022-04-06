@@ -2,10 +2,14 @@
 using ShootBird;
 using ShootBird.Hero;
 using ShootBird.Randomizer.RandWeapon;
+using ShootBird.Sound.FoneSound;
 
+
+
+Task foneSound = Task.Run(async () =>  await FoneGameSound.PlayFoneGameSound());
 
 // Приветсвенное сообщение
-Message.SendWelcomeMessageForPlayer();
+PresentMessage.SendWelcomeMessageForPlayer();
 await Task.Delay(TimeSpan.FromSeconds(10));
 // Данные для создания героя 
 string heroName = HeroData.InputName();
@@ -16,7 +20,7 @@ string species = HeroData.InputSpecies();
 // Создаем героя
 HeroPerson person = new(heroName, heroAge, heroGender, species);
 await Task.Delay(TimeSpan.FromSeconds(2));
-person.CreateHeroAsync().Wait();
+await person.CreateHeroAsync();
 
 //Первый шаг героя
 await Task.Delay(TimeSpan.FromSeconds(2));
@@ -34,7 +38,7 @@ await Task.Delay(TimeSpan.FromSeconds(15));
 int сartridge = HeroData.InputCartridge();
 
 // Устанавливаем показатель здоровья монстра
-int startPlayEnemy = heroEnemy.StartEnemyHealth();
+int startPlayEnemy = heroEnemy.GetEnemyHealth();
 Console.WriteLine($"Монстр начал идти к Вам! \nПоказатель здоровья: {startPlayEnemy} хп.");
 await Task.Delay(TimeSpan.FromSeconds(3));
 

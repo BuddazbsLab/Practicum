@@ -24,3 +24,6 @@
 /ShootBird/ShootBird/ShootBird/bin/Debug/net6.0
 /ShootBird/ShootBird/ShootBird/obj
 /ShootBird/ShootBird/ShootBird/Properties/PublishProfiles
+/ShootBird/ShootBird/ShootBird/bin/Release/net6.0
+/ShootBird/ShootBird/ShootBird/Sound/WeaponSound/HandGun.wav
+/ShootBird/ShootBird/ShootBird/Sound/FoneSound/GameFoneSound.wav

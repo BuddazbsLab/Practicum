@@ -14,28 +14,27 @@
             this.enemyName = enemyName;
         }
 
-        public int EnemyHelth { get { return this.enemyHelth; } }
-        public string EnemyName { get { return this.enemyName; } }
+        public int EnemyHelth => this.enemyHelth;
+        public string EnemyName => this.enemyName;
 
 
         /// <summary>
         /// Создание монтсра.
         /// </summary>
         /// <returns>Возращает результат создания монтсра.</returns>
-        public Task CreateEnemyAsync()
+        public async Task CreateEnemyAsync()
         {
-            Console.WriteLine($"Внимание!" +
+            Console.WriteLine("Внимание!" +
              $"\nПеред Вами появился монстр!" +
              $"\nИмя: {EnemyName} " +
              $"\nЗдоровье: {EnemyHelth}");
-            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Стартовое значение зоровья.
         /// </summary>
         /// <returns>Значение здоровья монстра.</returns>
-        public int StartEnemyHealth()
+        public int GetEnemyHealth()
         {
             return EnemyHelth;
         }

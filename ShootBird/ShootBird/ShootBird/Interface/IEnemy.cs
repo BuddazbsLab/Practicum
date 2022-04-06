@@ -7,6 +7,6 @@ namespace ShootBird
         string EnemyName { get; }
 
         Task CreateEnemyAsync();
-        int StartEnemyHealth();
+        int GetEnemyHealth();
     }
 }
