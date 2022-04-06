@@ -24,7 +24,7 @@ await person.CreateHeroAsync();
 
 //Первый шаг героя
 await Task.Delay(TimeSpan.FromSeconds(2));
-Console.WriteLine("Вы сделали свой первый шаг.");
+Console.WriteLine("\nВы сделали свой первый шаг.");
 await Task.Delay(TimeSpan.FromSeconds(8));
 
 // Генерим случайное имя монтсра
@@ -39,7 +39,7 @@ int сartridge = HeroData.InputCartridge();
 
 // Устанавливаем показатель здоровья монстра
 int startPlayEnemy = heroEnemy.GetEnemyHealth();
-Console.WriteLine($"Монстр начал идти к Вам! \nПоказатель здоровья: {startPlayEnemy} хп.");
+Console.WriteLine($"\nМонстр начал идти к Вам! \nПоказатель здоровья: {startPlayEnemy} хп.");
 await Task.Delay(TimeSpan.FromSeconds(3));
 
 
