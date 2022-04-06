@@ -17,10 +17,17 @@ int heroAge = HeroData.InputAge();
 string heroGender = HeroData.InputHeroGender();
 string species = HeroData.InputSpecies();
 
+//Заранее готовим
+
 // Создаем героя
 HeroPerson person = new(heroName, heroAge, heroGender, species);
 await Task.Delay(TimeSpan.FromSeconds(2));
+
+
+
 await person.CreateHeroAsync();
+// Начальный показатель здоровья
+int initialHealthHero = person.Helth;
 
 //Первый шаг героя
 await Task.Delay(TimeSpan.FromSeconds(2));
@@ -34,13 +41,15 @@ HeroEnemy heroEnemy = new(enemyName);
 heroEnemy.CreateEnemyAsync().Wait();
 await Task.Delay(TimeSpan.FromSeconds(15));
 
-//Задаем колличество выстрелов
-int сartridge = HeroData.InputCartridge();
+
 
 // Устанавливаем показатель здоровья монстра
 int startPlayEnemy = heroEnemy.GetEnemyHealth();
 Console.WriteLine($"\nМонстр начал идти к Вам! \nПоказатель здоровья: {startPlayEnemy} хп.");
 await Task.Delay(TimeSpan.FromSeconds(3));
+
+// Область где сражается герой и монстр
+Battlefield battlefield = new(initialHealthHero);
 
 
 
