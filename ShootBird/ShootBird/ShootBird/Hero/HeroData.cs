@@ -22,21 +22,6 @@ namespace ShootBird.Hero
             }
             return heroAge;
         }
-
-        public static string InputSpecies()
-        {
-            Console.WriteLine("Введите расу персонажа: ");
-            string species = Console.ReadLine();
-            return species;
-        }
-
-        public static string InputHeroGender()
-        {
-            Console.WriteLine("Введите гендерную предрасположенность персонажа: ");
-            string heroGender = Console.ReadLine();
-            return heroGender;
-        }
-
         public static int InputCartridge()
         {
             Console.WriteLine("Врага нужно срочно убить или он убьет Вас! \n Сколько выстрелов сделать?");

@@ -1,66 +1,48 @@
-﻿using ShootBird.Sound.WeaponSound;
-
-namespace ShootBird.Gun
+﻿namespace ShootBird.Gun
 {
-    internal class BaseballBat : IWeapon
+    internal class BaseballBat : IWeapons
     {
-        private int startPlayEnemy;
-        private readonly int? сartridge;
-        private readonly int startDamageRange;
-        private readonly int endDamageRange;
+        private readonly int endurance;
+        private readonly int minDamageRange;
+        private readonly int maxDamageRange;
+        private readonly string weaponName;
 
-        public BaseballBat(int startPlayEnemy, int? сartridge)
+        public BaseballBat()
         {
-            this.startPlayEnemy = startPlayEnemy;
-            this.startDamageRange = 1;
-            this.endDamageRange = 1;
-            this.сartridge = сartridge;
+            this.endurance = 70;
+            this.minDamageRange = 20;
+            this.maxDamageRange = 25;
+            this.weaponName = "Бита";
         }
 
-        public int StartPlayEnemy { get { return startPlayEnemy; } }
-        public int StartDamageRange { get { return startDamageRange; } }
-        private int EndDamageRange { get { return endDamageRange; } }
-        public int Cartridge { get { return (int)сartridge; } }
+        public int Endurance => this.endurance;
+        public int MinDamageRange => this.minDamageRange;
+        public int MaxDamageRange => this.maxDamageRange;
+        public string WeaponName => this.weaponName;
 
         /// <summary>
         /// Производим выстрел во врага.
         /// </summary>
         /// <returns>Вывод результата выстрела.</returns>
-        public async Task Shot()
+        public (int Endurance, int Damage) Attack()
         {
             Random random = new();
-
-            for (int i = 0; i < Cartridge; i++)
-            {
-                int randomDamage = random.Next(StartDamageRange, EndDamageRange);
-                int damage = StartPlayEnemy - randomDamage;
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Удар битой {i + 1}");
-                GunSound gunSound = new();
-                gunSound.HandGunSound();
-
-                await Task.Delay(TimeSpan.FromMilliseconds(800));
-                if (StartPlayEnemy > 0) { this.startPlayEnemy = damage; }
-
-                ShowDamageHealth();
-                await Task.Delay(TimeSpan.FromMilliseconds(400));
-                if (StartPlayEnemy <= 0) break;
-            }
-            if (StartPlayEnemy <= 0)
-            {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("Вы выйграли");
-            }
-            else { Console.WriteLine("Враг остался жив а Вы умерли. Кек :)"); }
-
+            int damage = random.Next(MinDamageRange, MaxDamageRange);
+            return (Endurance, damage);
         }
         /// <summary>
-        /// Вывод статистики после выстрела во врага.
+        /// Информация о оружии
         /// </summary>
-        private void ShowDamageHealth()
+        public void AboutWeapon()
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Монстр получил урон! Здоровье: {this.startPlayEnemy} хп.");
+            Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
+            Console.WriteLine("                                Получено новое оружие: ");
+            Console.WriteLine($"\n {WeaponName}" +
+                              $"\n Прочность: {Endurance}" +
+                              $"\n Урон: {MinDamageRange} - {MaxDamageRange}");
+            Console.WriteLine("                                                  Получено достижение 'Оружейник!'");
+            Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
         }
+
     }
 }

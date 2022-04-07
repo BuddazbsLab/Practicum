@@ -8,23 +8,23 @@
         private readonly int heroHelth;
         private readonly string heroName;
         private readonly int heroAge;
-        private readonly string heroGender;
-        private readonly string species;
+        private readonly int heroLevel;
+        private readonly int heroExperience;
 
-        public HeroPerson(string heroName, int heroAge, string heroGender, string species)
+        public HeroPerson(string heroName, int heroAge)
         {
             this.heroHelth = 100;
             this.heroName = heroName;
             this.heroAge = heroAge;
-            this.heroGender = heroGender;
-            this.species = species;
+            this.heroLevel = 1;
+            this.heroExperience = 0;
         }
 
         public int Helth => this.heroHelth;
         public string HeroName => this.heroName;
         public int HeroAge => this.heroAge;
-        public string Species => this.species;
-        public string HeroGender => this.heroGender;
+        public int HeroLevel => this.heroLevel;
+        public int HeroExperience => this.heroExperience;
 
         /// <summary>
         /// Создание героя
@@ -32,13 +32,16 @@
         /// <returns>Возращает результат создания героя</returns>
         public async Task CreateHeroAsync()
         {
-            Console.WriteLine($"Поздравлеям!" +
-             $"\nСоздан новый Герой: " +
-             $"\nИмя: {HeroName} " +
-             $"\nВозраст: {HeroAge} " +
-             $"\nГендерная принадлежность: {HeroGender} " +
-             $"\nРаса: {Species} " +
-             $"\nЗдоровье: {Helth}");
+            Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
+            Console.WriteLine("                                    Поздравлеям!" +
+             "\n                                Создан новый Герой: " +
+             $"\n Имя: {HeroName} " +
+             $"\n Возраст: {HeroAge} " +
+             $"\n Здоровье: {Helth}" +
+             $"\n Уровень героя: {HeroLevel}" +
+             $"\n Опыт героя: {HeroExperience}");
+            Console.WriteLine("                                                  Получено достижение 'Создатель!'");
+            Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
         }
     }
 }
