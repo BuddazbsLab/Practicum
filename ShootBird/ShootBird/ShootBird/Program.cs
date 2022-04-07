@@ -1,5 +1,6 @@
 ﻿using ShootBird;
 using ShootBird.Hero;
+using ShootBird.Message.LastMessageToEndGame;
 using ShootBird.Randomizer.RandWeapon;
 using ShootBird.Sound.FoneSound;
 
@@ -27,6 +28,7 @@ int initialHealthHero = person.Helth;
 //Присваиваем случайное оружие герою
 RandomWeapon randomWeapon = new();
 var weaponHero = RandomWeapon.TakeWeapon();
+await Task.Delay(TimeSpan.FromSeconds(2));
 weaponHero.AboutWeapon();
 
 //Первый шаг героя
@@ -37,13 +39,6 @@ await Task.Delay(TimeSpan.FromSeconds(8));
 
 Console.WriteLine("\nО нет! Вы наткнулись на монстра!");
 await Task.Delay(TimeSpan.FromSeconds(5));
-Console.WriteLine("\nРасслабся. Этот монстр будет тренировочным. \nТы только посмотри на его имя АХАХХА");
-await Task.Delay(TimeSpan.FromSeconds(7));
-Console.WriteLine("\nПри каждом сражении в этой игре, тебя и монстра будет переносить на специальную область для сражений." +
-    "\nВ данной области Вы будете сражаться и только один из Вас останется в этом мире." +
-    "\nЕсли победишь своего врага, то получишь награду. Спросишь какую? Так я тебе и сказал." +
-    "\nНачинай играть и все поймешь со временем. ");
-
 
 // Генерим случайное имя монтсра
 string enemyName = GeneratorNameEnemy.GenerateName(7);
@@ -53,6 +48,16 @@ HeroEnemy heroEnemy = new(enemyName);
 await heroEnemy.CreateEnemyAsync();
 // Получаем показатель здоровья монстра
 int initialHealthEnemy = heroEnemy.GetEnemyHealth();
+
+
+await Task.Delay(TimeSpan.FromSeconds(5));
+Console.WriteLine("\nРасслабся. Этот монстр будет тренировочным. \nТы только посмотри на его имя АХАХХА");
+await Task.Delay(TimeSpan.FromSeconds(7));
+Console.WriteLine("\nПри каждом сражении в этой игре, тебя и монстра будет переносить на специальную область для сражений." +
+    "\nВ данной области Вы будете сражаться и только один из Вас останется в этом мире." +
+    "\nЕсли победишь своего врага, то получишь награду. Спросишь какую? Так я тебе и сказал." +
+    "\nНачинай играть и все поймешь со временем. ");
+
 
 await Task.Delay(TimeSpan.FromSeconds(15));
 Console.WriteLine($"\nТебя {heroName} и монтсра {enemyName} переносит на Арену!");
@@ -83,5 +88,7 @@ await battlefield.StartTheBattleAsync();
 
 await Task.Delay(TimeSpan.FromSeconds(8));
 Console.WriteLine("На этом игра пока закончилась");
+await Task.Delay(TimeSpan.FromSeconds(2));
+TheEnd.SendLastMessageInGame();
 Console.ReadLine();
 

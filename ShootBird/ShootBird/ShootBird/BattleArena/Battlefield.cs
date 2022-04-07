@@ -20,7 +20,7 @@ namespace ShootBird
         {
             this.heroHeals = initialHealthHero;
             this.enemyHeals = initialHealthEnemy;
-            this.enemyDamage = 0;
+            this.enemyDamage = 3;
             this.heroGunDamage = heroDamageInEmeny;
             this.enemyExperience = 0;
             this.heroExperience = 0;
@@ -34,6 +34,7 @@ namespace ShootBird
         /// </summary>
         public async Task StartTheBattleAsync()
         {
+            // Повторяющийся код! Плохо!
 
             for(int i = 0; i < numberOfShot; i++)
             {
@@ -43,12 +44,25 @@ namespace ShootBird
                 GunSound gunSound = new();
                 gunSound.HandGunSound();
 
-                await Task.Delay(TimeSpan.FromMilliseconds(800));
+                await Task.Delay(TimeSpan.FromSeconds(2));
 
-                if(this.enemyHeals > 0) { this.enemyHeals = damageByEnemy;}
+                if (this.enemyHeals > 0) { this.enemyHeals = damageByEnemy;}
+                DisplayingTheProgressOfTheBattleHero();
 
-                DisplayingTheProgressOfTheBattle();
-                await Task.Delay(TimeSpan.FromMilliseconds(400));
+                await Task.Delay(TimeSpan.FromSeconds(1));
+
+                int dmageByHero = this.heroHeals - this.enemyDamage;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Атака монстра №{i + 1}");
+                await Task.Delay(TimeSpan.FromSeconds(2));
+
+
+                if (this.heroHeals > 0) { this.heroHeals = dmageByHero; }
+                DisplayingTheProgressOfTheBattleEnemy();
+
+
+
+                await Task.Delay(TimeSpan.FromSeconds(2));
                 if (this.enemyHeals <= 0) break;
             }
 
@@ -56,17 +70,27 @@ namespace ShootBird
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Вы выйграли");
+                await Task.Delay(TimeSpan.FromSeconds(4));
+                Console.WriteLine("Результат боя: ");
+                ResultOfTheBattle();
+
             }
             else { Console.WriteLine("Враг остался жив а Вы умерли. Кек :)"); }
         }
 
         /// <summary>
-        /// Вывод статистики после выстрела во врага.
+        /// Вывод статистики после атаки на врага.
         /// </summary>
-        private void DisplayingTheProgressOfTheBattle()
+        private void DisplayingTheProgressOfTheBattleHero()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Монстр получил урон! Здоровье: {this.enemyHeals} хп.");
+            Console.WriteLine($"Монстр получил урон! Здоровье: {this.enemyHeals} HP.");
+        }
+
+        private void DisplayingTheProgressOfTheBattleEnemy()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Ваш герой получил урон! Здоровье: {this.heroHeals} HP.");
         }
 
         /// <summary>
@@ -74,7 +98,7 @@ namespace ShootBird
         /// </summary>
         public void ResultOfTheBattle()
         {
-
+            Console.WriteLine($"У вас осталось здоровья {this.heroHeals}");
         }
 
     }
