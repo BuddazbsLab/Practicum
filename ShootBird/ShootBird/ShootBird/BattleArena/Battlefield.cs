@@ -49,7 +49,7 @@ namespace ShootBird
                 if (this.enemyHeals > 0) { this.enemyHeals = damageByEnemy;}
                 DisplayingTheProgressOfTheBattleHero();
 
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                await Task.Delay(TimeSpan.FromSeconds(2));
 
                 int dmageByHero = this.heroHeals - this.enemyDamage;
                 Console.ForegroundColor = ConsoleColor.Green;
