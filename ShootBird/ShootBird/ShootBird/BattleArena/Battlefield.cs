@@ -71,8 +71,6 @@ namespace ShootBird
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Вы выйграли");
                 await Task.Delay(TimeSpan.FromSeconds(4));
-                Console.WriteLine("Результат боя: ");
-                ResultOfTheBattle();
 
             }
             else { Console.WriteLine("Враг остался жив а Вы умерли. Кек :)"); }
@@ -96,9 +94,10 @@ namespace ShootBird
         /// <summary>
         /// Результат сражения
         /// </summary>
-        public void ResultOfTheBattle()
+        public int ResultOfTheBattle()
         {
             Console.WriteLine($"У вас осталось здоровья {this.heroHeals}");
+            return this.heroHeals;
         }
 
     }

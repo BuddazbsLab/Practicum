@@ -1,5 +1,6 @@
 ﻿using ShootBird;
 using ShootBird.Hero;
+using ShootBird.Images;
 using ShootBird.Message.LastMessageToEndGame;
 using ShootBird.Message.SystemMessage;
 using ShootBird.Randomizer.RandWeapon;
@@ -94,6 +95,69 @@ int reserve = newWeaponHero.Attack().Endurance;
 // Область где сражается герой и монстр
 Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserve);
 await battlefield.StartTheBattleAsync();
+
+//Выводим результат сражения и возращаем остаток здоровбя
+int remainingHealth = battlefield.ResultOfTheBattle();
+await Task.Delay(TimeSpan.FromSeconds(1));
+
+//Первый шаг после тренировочного боя
+Console.ForegroundColor = ConsoleColor.Yellow;
+Console.WriteLine("Поздравялю! \nТвой первый бой прошел успешно. \n Продолжай в том же духе!");
+await Task.Delay(TimeSpan.FromSeconds(1));
+
+//Проблемный перенос с арены обратно в мир героя
+Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
+Console.WriteLine("                                    Уведомление!");
+Console.WriteLine(" Бой завершен. Поздрваляем!");
+await Task.Delay(TimeSpan.FromSeconds(1));
+Console.WriteLine(" Начата процедура возращения.....");
+await Task.Delay(TimeSpan.FromSeconds(8));
+Console.WriteLine(" ОШИБКА!  ОШИБКА!  ОШИБКА!");
+await Task.Delay(TimeSpan.FromSeconds(2));
+Console.WriteLine(" Начат процесс перезагрузки системы!");
+await Task.Delay(TimeSpan.FromSeconds(8));
+Console.WriteLine(" Перенос на ближайшую точку");
+await Task.Delay(TimeSpan.FromSeconds(2));
+Console.WriteLine(" Перенос завершен");
+await Task.Delay(TimeSpan.FromSeconds(2));
+Console.WriteLine(" Локация: \nЛес Хенгельта. \nУровень опасности низкий. \nУровень монстров : 1 LVL");
+Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
+
+
+await Task.Delay(TimeSpan.FromSeconds(10));
+Console.WriteLine($"{heroName} Говорит:");
+await Task.Delay(TimeSpan.FromSeconds(2));
+Console.WriteLine("Что.... Что сейчас вообще было. Где Я!?!?!");
+await Task.Delay(TimeSpan.FromSeconds(2));
+Console.WriteLine("Я чувствую еще присутствие...");
+await Task.Delay(TimeSpan.FromSeconds(2));
+Console.WriteLine($"{heroName} Повернул голову и смотрит на тебя");
+//Выводим картинку героя
+await Task.Delay(TimeSpan.FromSeconds(2));
+AnsiiImages.FaceHero();
+await Task.Delay(TimeSpan.FromSeconds(4));
+
+Console.WriteLine("И чего молчим?");
+await Task.Delay(TimeSpan.FromSeconds(2));
+Console.WriteLine("Придется все самому делать.");
+await Task.Delay(TimeSpan.FromSeconds(2));
+Console.WriteLine("Что смотришь? Пошли уже. Нужно добраться до города пока не стемнело.");
+
+Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
+Console.WriteLine("                                    Уведомление!");
+Console.WriteLine(" Конец ознакомительной главы.");
+Console.WriteLine(" Судба Вашего героя теперь только на Вас. ");
+Console.WriteLine(" Заварите чайку и начинаем!");
+Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
+Console.WriteLine("\n\n\n");
+Console.WriteLine(@"█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
+╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝");
+
+
+Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
+Console.WriteLine("                                    Глава 1.");
+Console.WriteLine("                                 Лес Хенгельта.");
+Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
 
 
 
