@@ -41,8 +41,8 @@ namespace ShootBird
                 int damageByEnemy = this.enemyHeals - this.heroGunDamage;
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Атака героем №{i + 1}");
-                GunSound gunSound = new();
-                gunSound.HandGunSound();
+                //GunSound gunSound = new();
+                //gunSound.HandGunSound();
 
                 await Task.Delay(TimeSpan.FromSeconds(2));
 
