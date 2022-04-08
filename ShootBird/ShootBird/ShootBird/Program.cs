@@ -3,7 +3,7 @@ using ShootBird.Hero;
 using ShootBird.Images;
 using ShootBird.Message.LastMessageToEndGame;
 using ShootBird.Message.SystemMessage;
-using ShootBird.Randomizer.RandWeapon;
+using ShootBird.PlayerActions;
 using ShootBird.Sound.FoneSound;
 using ShootBird.Weapon.Selection;
 
@@ -29,12 +29,6 @@ int initialHealthHero = person.Helth;
 var newWeaponHero = WeaponSelection.IssueWeaponsToTheHeroOfYourChoice();
 await Task.Delay(TimeSpan.FromSeconds(2));
 newWeaponHero.AboutWeapon();
-
-////Присваиваем случайное оружие герою
-//RandomWeapon randomWeapon = new();
-//var weaponHero = RandomWeapon.TakeWeapon();
-//await Task.Delay(TimeSpan.FromSeconds(2));
-//weaponHero.AboutWeapon();
 
 //Первый шаг героя
 await Task.Delay(TimeSpan.FromSeconds(10));
@@ -83,22 +77,39 @@ Console.WriteLine("\nБыстрей убей его!!!");
 //Напоминалка
 await MyMessage.RemindAsync();
 
-//await Task.Delay(TimeSpan.FromSeconds(5));
-//Console.WriteLine("\nАх да, чуть не забыл. У каждого оружия есть свой лимит, прочность или запас патронов." +
-//"\nЕсли что-то закончится раньше чем монстр умрет, ты проиграешь :)");
+int operationType = BeatDontbeat.MakeAChoice();
+if (operationType == 0)
+{
+    await Task.Delay(TimeSpan.FromSeconds(10));
+    // Стреляем по монстру
+    int heroDamageInEmeny = newWeaponHero.Attack().Damage;
+    int reserve = newWeaponHero.Attack().Endurance;
 
-await Task.Delay(TimeSpan.FromSeconds(10));
-// Стреляем по монстру
-int heroDamageInEmeny = newWeaponHero.Attack().Damage;
-int reserve = newWeaponHero.Attack().Endurance;
+    // Область где сражается герой и монстр
+    Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserve);
+    await battlefield.StartTheBattleAsync();
+    //Выводим результат сражения и возращаем остаток здоровбя
+    int remainingHealth = battlefield.ResultOfTheBattle();
+    await Task.Delay(TimeSpan.FromSeconds(1));
+}
+//Повторение кода. Плохо! исправь!
+else
+{
+    Console.WriteLine("Неее так не пойдет. Запуск принудительного боя!.");
+    await Task.Delay(TimeSpan.FromSeconds(10));
+    // Стреляем по монстру
+    int heroDamageInEmeny = newWeaponHero.Attack().Damage;
+    int reserve = newWeaponHero.Attack().Endurance;
 
-// Область где сражается герой и монстр
-Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserve);
-await battlefield.StartTheBattleAsync();
+    // Область где сражается герой и монстр
+    Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserve);
+    await battlefield.StartTheBattleAsync();
+    //Выводим результат сражения и возращаем остаток здоровбя
+    int remainingHealth = battlefield.ResultOfTheBattle();
+    await Task.Delay(TimeSpan.FromSeconds(1));
+}
 
-//Выводим результат сражения и возращаем остаток здоровбя
-int remainingHealth = battlefield.ResultOfTheBattle();
-await Task.Delay(TimeSpan.FromSeconds(1));
+
 
 //Первый шаг после тренировочного боя
 Console.ForegroundColor = ConsoleColor.Yellow;
