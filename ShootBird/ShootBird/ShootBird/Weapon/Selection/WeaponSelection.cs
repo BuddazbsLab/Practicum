@@ -1,8 +1,8 @@
-﻿using ShootBird.Gun;
+﻿using L.S.D.Interface;
 
-namespace ShootBird.Weapon.Selection
+namespace L.S.D.Weapon.Selection
 {
-  sealed  internal class WeaponSelection
+    sealed internal class WeaponSelection
     {
         public static IWeapons IssueWeaponsToTheHeroOfYourChoice()
         {

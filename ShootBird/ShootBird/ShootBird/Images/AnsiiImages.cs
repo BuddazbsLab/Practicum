@@ -1,4 +1,4 @@
-﻿namespace ShootBird.Images
+﻿namespace L.S.D.Images
 {
     internal class AnsiiImages
     {

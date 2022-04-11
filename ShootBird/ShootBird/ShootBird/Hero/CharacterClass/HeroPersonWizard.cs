@@ -1,4 +1,6 @@
-﻿namespace ShootBird
+﻿using L.S.D.Interface;
+
+namespace L.S.D.Hero.CharacterClass
 {
     /// <summary>
     /// Класс героя
@@ -14,20 +16,20 @@
 
         public HeroPersonWizard(string heroName, int heroAge)
         {
-            this.heroHelth = 100;
+            heroHelth = 100;
             this.heroName = heroName;
             this.heroAge = heroAge;
-            this.heroLevel = 1;
-            this.heroExperience = 0;
-            this.nameCharacteristicsClass = "Маг";
+            heroLevel = 1;
+            heroExperience = 0;
+            nameCharacteristicsClass = "Маг";
         }
 
-        public int Helth => this.heroHelth;
-        public string HeroName => this.heroName;
-        public int HeroAge => this.heroAge;
-        public int HeroLevel => this.heroLevel;
-        public int HeroExperience => this.heroExperience;
-        public string NameCharacteristicsClass => this.nameCharacteristicsClass;
+        public int Helth => heroHelth;
+        public string HeroName => heroName;
+        public int HeroAge => heroAge;
+        public int HeroLevel => heroLevel;
+        public int HeroExperience => heroExperience;
+        public string NameCharacteristicsClass => nameCharacteristicsClass;
 
         /// <summary>
         /// Создание героя

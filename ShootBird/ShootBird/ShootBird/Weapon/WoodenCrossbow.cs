@@ -1,5 +1,6 @@
-﻿
-namespace ShootBird.Gun
+﻿using L.S.D.Interface;
+
+namespace L.S.D.Weapon
 {
     internal class WoodenCrossbow : IWeapons
     {
@@ -10,16 +11,16 @@ namespace ShootBird.Gun
 
         public WoodenCrossbow()
         {
-            this.endurance = 70;
-            this.minDamageRange = 20;
-            this.maxDamageRange = 25;
-            this.weaponName = "Деревянный арбалет.";
+            endurance = 70;
+            minDamageRange = 20;
+            maxDamageRange = 25;
+            weaponName = "Деревянный арбалет.";
         }
 
-        public int Endurance => this.endurance;
-        public int MinDamageRange => this.minDamageRange;
-        public int MaxDamageRange => this.maxDamageRange;
-        public string WeaponName => this.weaponName;
+        public int Endurance => endurance;
+        public int MinDamageRange => minDamageRange;
+        public int MaxDamageRange => maxDamageRange;
+        public string WeaponName => weaponName;
 
         /// <summary>
         /// Производим выстрел во врага.

@@ -1,7 +1,7 @@
-﻿using ShootBird.Gun;
-using ShootBird.Weapon;
+﻿using L.S.D.Interface;
+using L.S.D.Weapon;
 
-namespace ShootBird.Randomizer.RandWeapon
+namespace L.S.D.Randomizer.RandWeapon
 {
     internal class RandomWeapon
     {

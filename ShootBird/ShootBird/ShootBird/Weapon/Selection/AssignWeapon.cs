@@ -1,7 +1,6 @@
-﻿using ShootBird.Gun;
+﻿using L.S.D.Interface;
 
-
-namespace ShootBird.Weapon.Selection
+namespace L.S.D.Weapon.Selection
 {
     internal class AssignFirstWeapon
     {
@@ -11,15 +10,15 @@ namespace ShootBird.Weapon.Selection
         {
             this.operationType = operationType;
         }
-        public int OperationType => this.operationType;
+        public int OperationType => operationType;
 
-        public  IWeapons AssignWeapon()
+        public IWeapons AssignWeapon()
         {
             var weapons = new IWeapons[]
             {
                 new RustySword(),
                 new WoodenCrossbow(),
-                new RodOfSparks(),               
+                new RodOfSparks(),
             };
 
             var weapon = weapons[OperationType];

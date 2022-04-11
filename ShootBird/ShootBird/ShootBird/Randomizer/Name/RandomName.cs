@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace ShootBird.Randomizer.Name
+namespace L.S.D.Randomizer.Name
 {
     /// <summary>
     /// RandomName class, используется для генерации случайного имени.
@@ -12,12 +12,12 @@ namespace ShootBird.Randomizer.Name
 
         public RandomName()
         {
-            this.vowels = "aeuoyi".ToCharArray();
-            this.consonants = "qwrtpsdfghjklzxcvbnm".ToCharArray();
+            vowels = "aeuoyi".ToCharArray();
+            consonants = "qwrtpsdfghjklzxcvbnm".ToCharArray();
         }
 
-        public char[] Vowels => this.vowels;
-        public char[] Consonants => this.consonants;
+        public char[] Vowels => vowels;
+        public char[] Consonants => consonants;
 
         public string Generate()
         {
@@ -43,7 +43,7 @@ namespace ShootBird.Randomizer.Name
                 {
                     newNick.Append(consonants[random.Next(0, consonants.Length)]);
                     newNick.Append(vowels[random.Next(0, vowels.Length)]);
-                }                     
+                }
             }
             // коррекция длины имени. Так как составляли по слогам из двух букв,
             // и если длина имени должна быть нечётной, то убираем последнюю букву.

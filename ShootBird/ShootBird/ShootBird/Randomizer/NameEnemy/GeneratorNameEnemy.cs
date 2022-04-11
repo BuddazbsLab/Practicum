@@ -1,6 +1,6 @@
-﻿using ShootBird.Randomizer.Name;
+﻿using L.S.D.Randomizer.Name;
 
-namespace ShootBird
+namespace L.S.D.Randomizer.NameEnemy
 {
     /// <summary>
     /// Генератор имен

@@ -1,5 +1,4 @@
-﻿
-namespace ShootBird.Hero
+﻿namespace L.S.D.Hero
 {
     internal class PersonData
     {

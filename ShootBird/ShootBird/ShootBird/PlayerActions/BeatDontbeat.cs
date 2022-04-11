@@ -1,4 +1,4 @@
-﻿namespace ShootBird.PlayerActions
+﻿namespace L.S.D.PlayerActions
 {
     internal class BeatDontbeat
     {

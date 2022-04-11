@@ -1,5 +1,6 @@
-﻿
-namespace ShootBird.Hero
+﻿using L.S.D.Interface;
+
+namespace L.S.D.Hero
 {
     internal class InitialСharacteristics
     {
@@ -12,8 +13,8 @@ namespace ShootBird.Hero
             this.heroAge = heroAge;
         }
 
-        public string HeroName => this.heroName;
-        public int HeroAge => this.heroAge;
+        public string HeroName => heroName;
+        public int HeroAge => heroAge;
 
 
         public IHeroPerson NewCharacterClass()
@@ -46,7 +47,7 @@ namespace ShootBird.Hero
             if (operationType >= 0 || operationType <= 2)
             {
                 //operationType = int.Parse(Console.ReadLine());
-                AssignCharacterClass assignFirstWeapon = new(operationType , HeroName, HeroAge);
+                AssignCharacterClass assignFirstWeapon = new(operationType, HeroName, HeroAge);
                 var selectedCharacterClass = assignFirstWeapon.AssignNewCharacterClass();
                 return selectedCharacterClass;
             }
@@ -59,6 +60,6 @@ namespace ShootBird.Hero
             }
         }
 
-       
+
     }
 }

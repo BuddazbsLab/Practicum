@@ -1,6 +1,6 @@
-﻿using ShootBird.Sound.WeaponSound;
+﻿using L.S.D.Sound.WeaponSound;
 
-namespace ShootBird
+namespace L.S.D.BattleArena
 {
     /// <summary>
     /// Поле сражения. Где герой и монтср просто стражаются.
@@ -9,23 +9,23 @@ namespace ShootBird
     {
         private int heroHeals;
         private int enemyHeals;
-        private int heroGunDamage;
-        private int enemyDamage;
+        private readonly int heroGunDamage;
+        private readonly int enemyDamage;
         private int heroExperience;
         private int enemyExperience;
-        private int numberOfShot;
-        private int numberOfRoundsInTheClip;
+        private readonly int numberOfShot;
+        private readonly int numberOfRoundsInTheClip;
 
         public Battlefield(int initialHealthHero, int initialHealthEnemy, int heroDamageInEmeny, int reserve)
         {
-            this.heroHeals = initialHealthHero;
-            this.enemyHeals = initialHealthEnemy;
-            this.enemyDamage = 3;
-            this.heroGunDamage = heroDamageInEmeny;
-            this.enemyExperience = 0;
-            this.heroExperience = 0;
-            this.numberOfShot = reserve;
-            this.numberOfRoundsInTheClip = reserve;
+            heroHeals = initialHealthHero;
+            enemyHeals = initialHealthEnemy;
+            enemyDamage = 3;
+            heroGunDamage = heroDamageInEmeny;
+            enemyExperience = 0;
+            heroExperience = 0;
+            numberOfShot = reserve;
+            numberOfRoundsInTheClip = reserve;
         }
 
 
@@ -36,9 +36,9 @@ namespace ShootBird
         {
             // Повторяющийся код! Плохо!
 
-            for(int i = 0; i < numberOfShot; i++)
+            for (int i = 0; i < numberOfShot; i++)
             {
-                int damageByEnemy = this.enemyHeals - this.heroGunDamage;
+                int damageByEnemy = enemyHeals - heroGunDamage;
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Атака героем №{i + 1}");
                 //GunSound gunSound = new();
@@ -46,27 +46,27 @@ namespace ShootBird
 
                 await Task.Delay(TimeSpan.FromSeconds(2));
 
-                if (this.enemyHeals > 0) { this.enemyHeals = damageByEnemy;}
+                if (enemyHeals > 0) { enemyHeals = damageByEnemy; }
                 DisplayingTheProgressOfTheBattleHero();
 
                 await Task.Delay(TimeSpan.FromSeconds(2));
 
-                int dmageByHero = this.heroHeals - this.enemyDamage;
+                int dmageByHero = heroHeals - enemyDamage;
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Атака монстра №{i + 1}");
                 await Task.Delay(TimeSpan.FromSeconds(2));
 
 
-                if (this.heroHeals > 0) { this.heroHeals = dmageByHero; }
+                if (heroHeals > 0) { heroHeals = dmageByHero; }
                 DisplayingTheProgressOfTheBattleEnemy();
 
 
 
                 await Task.Delay(TimeSpan.FromSeconds(2));
-                if (this.enemyHeals <= 0) break;
+                if (enemyHeals <= 0) break;
             }
 
-            if (this.enemyHeals <= 0)
+            if (enemyHeals <= 0)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Вы выйграли");
@@ -82,13 +82,13 @@ namespace ShootBird
         private void DisplayingTheProgressOfTheBattleHero()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Монстр получил урон! Здоровье: {this.enemyHeals} HP.");
+            Console.WriteLine($"Монстр получил урон! Здоровье: {enemyHeals} HP.");
         }
 
         private void DisplayingTheProgressOfTheBattleEnemy()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Ваш герой получил урон! Здоровье: {this.heroHeals} HP.");
+            Console.WriteLine($"Ваш герой получил урон! Здоровье: {heroHeals} HP.");
         }
 
         /// <summary>
@@ -96,8 +96,8 @@ namespace ShootBird
         /// </summary>
         public int ResultOfTheBattle()
         {
-            Console.WriteLine($"У вас осталось здоровья {this.heroHeals}");
-            return this.heroHeals;
+            Console.WriteLine($"У вас осталось здоровья {heroHeals}");
+            return heroHeals;
         }
 
     }

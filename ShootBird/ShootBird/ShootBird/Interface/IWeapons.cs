@@ -1,4 +1,4 @@
-﻿namespace ShootBird.Gun
+﻿namespace L.S.D.Interface
 {
     internal interface IWeapons
     {

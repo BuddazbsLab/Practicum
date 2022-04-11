@@ -1,4 +1,4 @@
-﻿namespace ShootBird.Message.LastMessageToEndGame
+﻿namespace L.S.D.Message.LastMessageToEndGame
 {
     internal class TheEnd
     {
@@ -50,7 +50,7 @@
 
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(lastMessage.ToString());            
+            Console.WriteLine(lastMessage.ToString());
         }
     }
 }

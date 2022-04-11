@@ -1,9 +1,9 @@
-﻿namespace ShootBird
+﻿namespace L.S.D.Message.FirstGameHiMessage
 {
     /// <summary>
     /// Приветственные сообщения
     /// </summary>
-   sealed internal class PresentMessage
+    sealed internal class PresentMessage
     {
 
         /// <summary>
@@ -63,7 +63,7 @@
             await Task.Delay(TimeSpan.FromSeconds(6));
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(welcomeMessageForPlayer);
-           // Console.Out.FlushAsync();
+            // Console.Out.FlushAsync();
             await Task.Delay(TimeSpan.FromSeconds(6));
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(gameconditionMessage);

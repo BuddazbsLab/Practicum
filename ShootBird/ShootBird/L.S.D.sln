@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShootBird", "ShootBird\ShootBird.csproj", "{2154FC36-1F7A-46BF-9180-0D12CD789A2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L.S.D", "ShootBird\L.S.D.csproj", "{2154FC36-1F7A-46BF-9180-0D12CD789A2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

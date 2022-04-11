@@ -1,7 +1,8 @@
-﻿
-using ShootBird.Hero.CharacterClass;
+﻿using L.S.D.Interface;
+using L.S.D;
+using L.S.D.Hero.CharacterClass;
 
-namespace ShootBird.Hero
+namespace L.S.D.Hero
 {
     internal class AssignCharacterClass
     {
@@ -16,9 +17,9 @@ namespace ShootBird.Hero
             this.heroAge = heroAge;
         }
 
-        public int OperationType => this.operationType;
-        public string HeroName => this.heroName;
-        public int HeroAge => this.heroAge;
+        public int OperationType => operationType;
+        public string HeroName => heroName;
+        public int HeroAge => heroAge;
 
         public IHeroPerson AssignNewCharacterClass()
         {

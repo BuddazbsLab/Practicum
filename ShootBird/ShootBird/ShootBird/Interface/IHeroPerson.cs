@@ -1,5 +1,4 @@
-﻿
-namespace ShootBird
+﻿namespace L.S.D.Interface
 {
     internal interface IHeroPerson
     {

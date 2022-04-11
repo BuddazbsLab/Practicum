@@ -1,4 +1,4 @@
-﻿namespace ShootBird.Message.SystemMessage
+﻿namespace L.S.D.Message.SystemMessage
 {
     internal class MyMessage
     {

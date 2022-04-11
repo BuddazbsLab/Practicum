@@ -1,7 +1,7 @@
 ﻿using System.Media;
 using System.Reflection;
 
-namespace ShootBird.Sound.FoneSound
+namespace L.S.D.Sound.FoneSound
 {
     /// <summary>
     /// Фоновая музыка игры
@@ -18,10 +18,10 @@ namespace ShootBird.Sound.FoneSound
             var fullPath = Path.Combine(appDir, relativePath);
             SoundPlayer player = new(fullPath);
             while (true)
-            {                
-                #pragma warning disable CA1416 // Проверка совместимости платформы
+            {
+#pragma warning disable CA1416 // Проверка совместимости платформы
                 player.Play();
-                #pragma warning restore CA1416 // Проверка совместимости платформы
+#pragma warning restore CA1416 // Проверка совместимости платформы
                 await Task.Delay(TimeSpan.FromMinutes(3));
             }
 

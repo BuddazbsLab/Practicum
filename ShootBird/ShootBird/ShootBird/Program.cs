@@ -1,11 +1,14 @@
-﻿using ShootBird;
-using ShootBird.Hero;
-using ShootBird.Images;
-using ShootBird.Message.LastMessageToEndGame;
-using ShootBird.Message.SystemMessage;
-using ShootBird.PlayerActions;
-using ShootBird.Sound.FoneSound;
-using ShootBird.Weapon.Selection;
+﻿using L.S.D.BattleArena;
+using L.S.D.Enemy;
+using L.S.D.Hero;
+using L.S.D.Images;
+using L.S.D.Message.FirstGameHiMessage;
+using L.S.D.Message.LastMessageToEndGame;
+using L.S.D.Message.SystemMessage;
+using L.S.D.PlayerActions;
+using L.S.D.Randomizer.NameEnemy;
+using L.S.D.Sound.FoneSound;
+using L.S.D.Weapon.Selection;
 
 Task foneSound = Task.Run(async () =>  await FoneGameSound.PlayFoneGameSound());
 
@@ -122,7 +125,7 @@ Console.WriteLine("╔═══════════════════�
 Console.WriteLine("                                    Уведомление!");
 Console.WriteLine(" Бой завершен. Поздрваляем!");
 await Task.Delay(TimeSpan.FromSeconds(1));
-Console.WriteLine(" Начата процедура возращения.....");
+Console.WriteLine(" Начата процедура возвращения.....");
 await Task.Delay(TimeSpan.FromSeconds(8));
 Console.WriteLine(" ОШИБКА!  ОШИБКА!  ОШИБКА!");
 await Task.Delay(TimeSpan.FromSeconds(2));
@@ -140,8 +143,8 @@ await Task.Delay(TimeSpan.FromSeconds(10));
 Console.WriteLine($"{heroName} Говорит:");
 await Task.Delay(TimeSpan.FromSeconds(2));
 Console.WriteLine("Что.... Что сейчас вообще было. Где Я!?!?!");
-await Task.Delay(TimeSpan.FromSeconds(2));
-Console.WriteLine("Я чувствую еще присутствие...");
+await Task.Delay(TimeSpan.FromSeconds(3));
+Console.WriteLine("Я чувствую чей-то взгляд...");
 await Task.Delay(TimeSpan.FromSeconds(2));
 Console.WriteLine($"{heroName} Повернул голову и смотрит на тебя");
 //Выводим картинку героя
@@ -150,15 +153,16 @@ AnsiiImages.FaceHero();
 await Task.Delay(TimeSpan.FromSeconds(4));
 
 Console.WriteLine("И чего молчим?");
-await Task.Delay(TimeSpan.FromSeconds(2));
-Console.WriteLine("Придется все самому делать.");
-await Task.Delay(TimeSpan.FromSeconds(2));
+await Task.Delay(TimeSpan.FromSeconds(3));
+Console.WriteLine("Эххх. Ладно, придется все самому делать.");
+await Task.Delay(TimeSpan.FromSeconds(3));
 Console.WriteLine("Что смотришь? Пошли уже. Нужно добраться до города пока не стемнело.");
+await Task.Delay(TimeSpan.FromSeconds(3));
 
 Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
 Console.WriteLine("                                    Уведомление!");
 Console.WriteLine(" Конец ознакомительной главы.");
-Console.WriteLine(" Судба Вашего героя теперь только на Вас. ");
+Console.WriteLine(" Судба Вашего героя теперь зависит только от Вас. ");
 Console.WriteLine(" Заварите чайку и начинаем!");
 Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
 Console.WriteLine("\n\n\n");

@@ -1,7 +1,7 @@
 ﻿using System.Media;
 using System.Reflection;
 
-namespace ShootBird.Sound.WeaponSound
+namespace L.S.D.Sound.WeaponSound
 {
     /// <summary>
     /// Звуки оружия
@@ -13,17 +13,17 @@ namespace ShootBird.Sound.WeaponSound
 
         public GunSound()
         {
-            this.appDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            appDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
 
-        public string AppDir => this.appDir;
+        public string AppDir => appDir;
 
         /// <summary>
         /// Звук выстрела пистолета
         /// </summary>
         public void HandGunSound()
         {
-            
+
             var relativePath = @"Sound\WeaponSound\HandGun.wav";
             var fullPath = Path.Combine(AppDir, relativePath);
             SoundPlayer player = new(fullPath);
