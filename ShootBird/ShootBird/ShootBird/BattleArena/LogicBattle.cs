@@ -5,8 +5,8 @@
         private int heroHeals;
         private int enemyHeals;
         private int heroArmor;
-        private int enemyDamage;
-        private int heroDamage;
+        private readonly int enemyDamage;
+        private readonly int heroDamage;
 
         public LogicBattle(int heroHeals, int enemyHeals, int heroArmor, int heroDamage, int enemyDamage)
         {
@@ -36,7 +36,7 @@
             set { this.enemyHeals = value; }
         }
 
-        public int EnemyDamage { get; }
+        public int EnemyDamage => this.enemyDamage;
 
         public void HeroAttak()
         {
@@ -52,17 +52,17 @@
         {
             if (HeroArmor > 0)
             {
-                HeroArmor -= enemyDamage;
-                int dmageByHero = HeroHeals + HeroArmor - enemyDamage;
+                HeroArmor -= EnemyDamage;
+                int dmageByHero = HeroHeals;
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.ForegroundColor = ConsoleColor.Green;
                 if (HeroHeals > 0) { HeroHeals = dmageByHero; }
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Ваш герой получил урон! Здоровье: {HeroHeals} HP.");
+                Console.WriteLine($"Ваш герой получил урон! \nЗдоровье: {HeroHeals} HP.\nБорня {HeroArmor}");
             }
             else
             {
-                int dmageByHero = HeroHeals - enemyDamage;
+                int dmageByHero = HeroHeals - EnemyDamage;
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.ForegroundColor = ConsoleColor.Green;
                 if (HeroHeals > 0) { HeroHeals = dmageByHero; }

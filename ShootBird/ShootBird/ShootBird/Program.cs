@@ -10,7 +10,7 @@ using L.S.D.Randomizer.NameEnemy;
 using L.S.D.Sound.FoneSound;
 using L.S.D.Weapon.Selection;
 
-Task foneSound = Task.Run(async () =>  await FoneGameSound.PlayFoneGameSound());
+//Task foneSound = Task.Run(async () =>  await FoneGameSound.PlayFoneGameSound());
 
 // Приветсвенное сообщение
 PresentMessage.SendWelcomeMessageForPlayer();

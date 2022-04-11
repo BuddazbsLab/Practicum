@@ -24,7 +24,7 @@ namespace L.S.D.BattleArena
         {
             this.heroHeals = initialHealthHero;
             this.enemyHeals = initialHealthEnemy;
-            this.enemyDamage = 3;
+            this.enemyDamage = 24;
             this.heroGunDamage = heroDamageInEmeny;
             this.enemyExperience = 0;
             this.heroExperience = 0;
