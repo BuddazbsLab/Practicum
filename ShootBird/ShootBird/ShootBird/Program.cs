@@ -26,6 +26,8 @@ InitialСharacteristics initialСharacteristics = new(heroName, heroAge);
 var initialHero = initialСharacteristics.NewCharacterClass();
 await initialHero.CreateHeroAsync();
 int initialHealthHero = initialHero.Helth;
+int initialLevelHero = initialHero.HeroLevel;
+int initArmorHero = initialHero.HeroArmor;
 
 
 await Task.Delay(TimeSpan.FromSeconds(2));
@@ -35,13 +37,13 @@ await Task.Delay(TimeSpan.FromSeconds(1));
 newWeaponHero.AboutWeapon();
 
 //Первый шаг героя
-await Task.Delay(TimeSpan.FromSeconds(10));
+await Task.Delay(TimeSpan.FromSeconds(5));
 Console.WriteLine("\nВы сделали свой первый шаг на встречу приключениям.");
-await Task.Delay(TimeSpan.FromSeconds(8));
+await Task.Delay(TimeSpan.FromSeconds(4));
 
 
 Console.WriteLine("\nО нет! Вы наткнулись на монстра!");
-await Task.Delay(TimeSpan.FromSeconds(5));
+await Task.Delay(TimeSpan.FromSeconds(3));
 
 // Генерим случайное имя монтсра
 string enemyName = GeneratorNameEnemy.GenerateEnemyName();
@@ -53,9 +55,9 @@ await heroEnemy.CreateEnemyAsync();
 int initialHealthEnemy = heroEnemy.GetEnemyHealth();
 
 
-await Task.Delay(TimeSpan.FromSeconds(5));
+await Task.Delay(TimeSpan.FromSeconds(3));
 Console.WriteLine("\nРасслабся. Этот монстр будет тренировочным.");
-await Task.Delay(TimeSpan.FromSeconds(7));
+await Task.Delay(TimeSpan.FromSeconds(4));
 Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
 Console.WriteLine(" При каждом сражении в этой игре,");
 Console.WriteLine(" тебя и монстра будет переносить на специальную область для сражений.");
@@ -66,55 +68,52 @@ Console.WriteLine(" Начинай играть и все поймешь со в
 Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
 
 
-await Task.Delay(TimeSpan.FromSeconds(15));
+await Task.Delay(TimeSpan.FromSeconds(8));
 Console.WriteLine($"\nТебя {heroName} и монтсра {enemyName} переносит на Арену!");
 
-await Task.Delay(TimeSpan.FromSeconds(5));
+await Task.Delay(TimeSpan.FromSeconds(3));
 Console.WriteLine("\nДа начнется великая битва!!!!!");
 
-await Task.Delay(TimeSpan.FromSeconds(5));
+await Task.Delay(TimeSpan.FromSeconds(3));
 Console.WriteLine($"\nМонстр начал идти к Вам!");
 
-await Task.Delay(TimeSpan.FromSeconds(5));
+await Task.Delay(TimeSpan.FromSeconds(3));
 Console.WriteLine("\nБыстрей убей его!!!");
 
 //Напоминалка
 await MyMessage.RemindAsync();
 
+
+// Стреляем по монстру
+int heroDamageInEmeny = newWeaponHero.Attack().Damage;
+int reserveWeapon = newWeaponHero.Attack().Endurance;
+//Инициализируем поле сражения
+Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserveWeapon);
+
+
 int operationType = BeatDontbeat.MakeAChoice();
 if (operationType == 0)
 {
-    await Task.Delay(TimeSpan.FromSeconds(10));
-    // Стреляем по монстру
-    int heroDamageInEmeny = newWeaponHero.Attack().Damage;
-    int reserve = newWeaponHero.Attack().Endurance;
-
+    await Task.Delay(TimeSpan.FromSeconds(3));
     // Область где сражается герой и монстр
-    Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserve);
     await battlefield.StartTheBattleAsync();
     //Выводим результат сражения и возращаем остаток здоровбя
-    int remainingHealth = battlefield.ResultOfTheBattle();
+    battlefield.ResultOfTheBattle();
     await Task.Delay(TimeSpan.FromSeconds(1));
 }
-//Повторение кода. Плохо! исправь!
 else
 {
     Console.WriteLine("Неее так не пойдет.\nЭто тренировочный бой и ты все равно будешь сражаться. \nЗапуск принудительного боя!");
-    await Task.Delay(TimeSpan.FromSeconds(10));
-    // Стреляем по монстру
-    int heroDamageInEmeny = newWeaponHero.Attack().Damage;
-    int reserve = newWeaponHero.Attack().Endurance;
-
+    await Task.Delay(TimeSpan.FromSeconds(3));
     // Область где сражается герой и монстр
-    Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserve);
     await battlefield.StartTheBattleAsync();
-    //Выводим результат сражения и возращаем остаток здоровбя
-    int remainingHealth = battlefield.ResultOfTheBattle();
+    //Выводим результат сражения и возращаем остаток здоровья на консоль. 
+    battlefield.ResultOfTheBattle();
     await Task.Delay(TimeSpan.FromSeconds(1));
 }
 
 
-
+await Task.Delay(TimeSpan.FromSeconds(1));
 //Первый шаг после тренировочного боя
 Console.ForegroundColor = ConsoleColor.Yellow;
 Console.WriteLine("Поздравялю! \nТвой первый бой прошел успешно. \n Продолжай в том же духе!");
@@ -126,11 +125,11 @@ Console.WriteLine("                                    Уведомление!")
 Console.WriteLine(" Бой завершен. Поздрваляем!");
 await Task.Delay(TimeSpan.FromSeconds(1));
 Console.WriteLine(" Начата процедура возвращения.....");
-await Task.Delay(TimeSpan.FromSeconds(8));
+await Task.Delay(TimeSpan.FromSeconds(4));
 Console.WriteLine(" ОШИБКА!  ОШИБКА!  ОШИБКА!");
 await Task.Delay(TimeSpan.FromSeconds(2));
 Console.WriteLine(" Начат процесс перезагрузки системы!");
-await Task.Delay(TimeSpan.FromSeconds(8));
+await Task.Delay(TimeSpan.FromSeconds(4));
 Console.WriteLine(" Перенос на ближайшую точку");
 await Task.Delay(TimeSpan.FromSeconds(2));
 Console.WriteLine(" Перенос завершен");
@@ -139,7 +138,7 @@ Console.WriteLine(" Локация: \n Лес Хенгельта. \n Урове�
 Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
 
 
-await Task.Delay(TimeSpan.FromSeconds(10));
+await Task.Delay(TimeSpan.FromSeconds(5));
 Console.WriteLine($"{heroName} Говорит:");
 await Task.Delay(TimeSpan.FromSeconds(2));
 Console.WriteLine("Что.... Что сейчас вообще было. Где Я!?!?!");
@@ -177,7 +176,7 @@ Console.WriteLine("╚═══════════════════�
 
 
 
-await Task.Delay(TimeSpan.FromSeconds(8));
+await Task.Delay(TimeSpan.FromSeconds(5));
 Console.WriteLine("На этом игра пока закончилась");
 await Task.Delay(TimeSpan.FromSeconds(2));
 TheEnd.SendLastMessageInGame();

@@ -13,23 +13,26 @@ namespace L.S.D.Hero.CharacterClass
         private readonly int heroLevel;
         private readonly int heroExperience;
         private readonly string nameCharacteristicsClass;
+        private readonly int heroArmor;
 
         public HeroPersonWizard(string heroName, int heroAge)
         {
-            heroHelth = 100;
+            this.heroHelth = 100;
             this.heroName = heroName;
             this.heroAge = heroAge;
-            heroLevel = 1;
-            heroExperience = 0;
-            nameCharacteristicsClass = "Маг";
+            this.heroLevel = 1;
+            this.heroExperience = 0;
+            this.nameCharacteristicsClass = "Маг";
+            this.heroArmor = 0;
         }
 
-        public int Helth => heroHelth;
-        public string HeroName => heroName;
-        public int HeroAge => heroAge;
-        public int HeroLevel => heroLevel;
-        public int HeroExperience => heroExperience;
-        public string NameCharacteristicsClass => nameCharacteristicsClass;
+        public int Helth => this.heroHelth;
+        public string HeroName => this.heroName;
+        public int HeroAge => this.heroAge;
+        public int HeroLevel => this.heroLevel;
+        public int HeroExperience => this.heroExperience;
+        public string NameCharacteristicsClass => this.nameCharacteristicsClass;
+        public int HeroArmor => this.heroArmor;
 
         /// <summary>
         /// Создание героя
@@ -44,6 +47,7 @@ namespace L.S.D.Hero.CharacterClass
              $"\n Возраст: {HeroAge} " +
              $"\n Класс персонажа: {NameCharacteristicsClass} " +
              $"\n Здоровье: {Helth}" +
+             $"\n Броня: {HeroArmor}" +
              $"\n Уровень героя: {HeroLevel}" +
              $"\n Опыт героя: {HeroExperience}");
             Console.WriteLine("                                                  Получено достижение 'Создатель!'");

@@ -3,30 +3,73 @@
 namespace L.S.D.BattleArena
 {
     /// <summary>
-    /// Поле сражения. Где герой и монтср просто стражаются.
+    /// Поле сражения.
     /// </summary>
     internal class Battlefield
     {
+        #region Поля класса
         private int heroHeals;
         private int enemyHeals;
         private readonly int heroGunDamage;
         private readonly int enemyDamage;
         private int heroExperience;
         private int enemyExperience;
-        private readonly int numberOfShot;
-        private readonly int numberOfRoundsInTheClip;
+        private int reserveWeapon;
+        private int heroArmor;
+        private int heroLvl;
+        #endregion
 
-        public Battlefield(int initialHealthHero, int initialHealthEnemy, int heroDamageInEmeny, int reserve)
+        #region Конструктор
+        public Battlefield(int initialHealthHero, int initialHealthEnemy, int heroDamageInEmeny, int reserveWeapon)
         {
-            heroHeals = initialHealthHero;
-            enemyHeals = initialHealthEnemy;
-            enemyDamage = 3;
-            heroGunDamage = heroDamageInEmeny;
-            enemyExperience = 0;
-            heroExperience = 0;
-            numberOfShot = reserve;
-            numberOfRoundsInTheClip = reserve;
+            this.heroHeals = initialHealthHero;
+            this.enemyHeals = initialHealthEnemy;
+            this.enemyDamage = 3;
+            this.heroGunDamage = heroDamageInEmeny;
+            this.enemyExperience = 0;
+            this.heroExperience = 0;
+            this.reserveWeapon = reserveWeapon;
+            this.heroArmor = 0;
+            this.heroLvl = 0;
         }
+        #endregion
+
+        #region Свойства
+        public int HeroHeals
+        {
+            get { return this.heroHeals; }
+            set { this.heroHeals = value; }
+        }
+        public int EnemyHeals
+        {
+            get { return this.enemyHeals; }
+            set { this.enemyHeals = value; }
+        }
+        public int HeroDamage => this.heroGunDamage;
+        public int EnemyDamage => this.enemyDamage;
+        public int HeroExperiance
+        {
+            get { return this.heroExperience; }
+            set { this.heroExperience = value;}
+        }
+        public int EnemyExperians
+        {
+            get { return this.enemyExperience; }
+            set { this.enemyExperience = value; }
+        }
+
+        public int HeroArmor
+        {
+            get { return this.heroArmor; }
+            set { this.heroArmor = value; }
+        }
+
+        public int ReserveWeapon
+        {
+            get { return this.reserveWeapon; }
+            set { this.reserveWeapon = value; }
+        }
+        #endregion
 
 
         /// <summary>
@@ -35,69 +78,53 @@ namespace L.S.D.BattleArena
         public async Task StartTheBattleAsync()
         {
             // Повторяющийся код! Плохо!
-
-            for (int i = 0; i < numberOfShot; i++)
+            LogicBattle logicBattle = new(HeroHeals, EnemyHeals, HeroArmor, HeroDamage, EnemyDamage);
+            for (int i = 0; i < ReserveWeapon; i++)
             {
-                int damageByEnemy = enemyHeals - heroGunDamage;
+               // ататка героя
                 Console.ForegroundColor = ConsoleColor.Green;
+                await Task.Delay(TimeSpan.FromSeconds(1));
                 Console.WriteLine($"Атака героем №{i + 1}");
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                logicBattle.HeroAttak();
+                EnemyHeals = logicBattle.EnemyHeals;
+
+                //Уменьшаем (стрелы, прочночть, заряды)
+                ReserveWeapon -= i + 1;
+
                 //GunSound gunSound = new();
                 //gunSound.HandGunSound();
 
-                await Task.Delay(TimeSpan.FromSeconds(2));
-
-                if (enemyHeals > 0) { enemyHeals = damageByEnemy; }
-                DisplayingTheProgressOfTheBattleHero();
-
-                await Task.Delay(TimeSpan.FromSeconds(2));
-
-                int dmageByHero = heroHeals - enemyDamage;
+                //Атака монстра
+                await Task.Delay(TimeSpan.FromSeconds(1));
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Атака монстра №{i + 1}");
-                await Task.Delay(TimeSpan.FromSeconds(2));
-
-
-                if (heroHeals > 0) { heroHeals = dmageByHero; }
-                DisplayingTheProgressOfTheBattleEnemy();
-
-
-
-                await Task.Delay(TimeSpan.FromSeconds(2));
-                if (enemyHeals <= 0) break;
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                logicBattle.EnemyAttak();
+                HeroHeals = logicBattle.HeroHeals;
+                
+                if (EnemyHeals <= 0) break;               
             }
-
-            if (enemyHeals <= 0)
+            if (EnemyHeals <= 0)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Вы выйграли");
-                await Task.Delay(TimeSpan.FromSeconds(4));
-
+                await Task.Delay(TimeSpan.FromSeconds(1));
             }
             else { Console.WriteLine("Враг остался жив а Вы умерли. Кек :)"); }
         }
-
-        /// <summary>
-        /// Вывод статистики после атаки на врага.
-        /// </summary>
-        private void DisplayingTheProgressOfTheBattleHero()
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Монстр получил урон! Здоровье: {enemyHeals} HP.");
-        }
-
-        private void DisplayingTheProgressOfTheBattleEnemy()
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Ваш герой получил урон! Здоровье: {heroHeals} HP.");
-        }
-
         /// <summary>
         /// Результат сражения
         /// </summary>
-        public int ResultOfTheBattle()
+        public void ResultOfTheBattle()
         {
-            Console.WriteLine($"У вас осталось здоровья {heroHeals}");
-            return heroHeals;
+            Random random = new Random();
+            int getEnemyExpireance = random.Next(1, 3);
+            int newHeroExpireance = HeroExperiance + getEnemyExpireance;
+            Console.WriteLine($"У вас осталось здоровья {HeroHeals}");
+            Console.WriteLine($"У вас осталось Брони {HeroArmor}");
+            Console.WriteLine($"Получено очков опыта {newHeroExpireance}");
+            Console.WriteLine($"Ваш уровень: {this.heroLvl}");
         }
 
     }
