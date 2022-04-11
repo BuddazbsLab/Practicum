@@ -12,22 +12,23 @@ Task foneSound = Task.Run(async () =>  await FoneGameSound.PlayFoneGameSound());
 // Приветсвенное сообщение
 PresentMessage.SendWelcomeMessageForPlayer();
 await Task.Delay(TimeSpan.FromSeconds(20));
-// Данные для создания героя 
-string heroName = HeroData.InputName();
-int heroAge = HeroData.InputAge();
+
+// Создание героя
+string heroName = PersonData.InputName();
+int heroAge = PersonData.InputAge();
+
+await Task.Delay(TimeSpan.FromSeconds(1));
+
+InitialСharacteristics initialСharacteristics = new(heroName, heroAge);
+var initialHero = initialСharacteristics.NewCharacterClass();
+await initialHero.CreateHeroAsync();
+int initialHealthHero = initialHero.Helth;
 
 
-// Создаем героя
-HeroPerson person = new(heroName, heroAge);
 await Task.Delay(TimeSpan.FromSeconds(2));
-
-await person.CreateHeroAsync();
-// Начальный показатель здоровья
-int initialHealthHero = person.Helth;
-
 //Игрок выбирает оруже
 var newWeaponHero = WeaponSelection.IssueWeaponsToTheHeroOfYourChoice();
-await Task.Delay(TimeSpan.FromSeconds(2));
+await Task.Delay(TimeSpan.FromSeconds(1));
 newWeaponHero.AboutWeapon();
 
 //Первый шаг героя
@@ -95,7 +96,7 @@ if (operationType == 0)
 //Повторение кода. Плохо! исправь!
 else
 {
-    Console.WriteLine("Неее так не пойдет. Запуск принудительного боя!.");
+    Console.WriteLine("Неее так не пойдет.\nЭто тренировочный бой и ты все равно будешь сражаться. \nЗапуск принудительного боя!");
     await Task.Delay(TimeSpan.FromSeconds(10));
     // Стреляем по монстру
     int heroDamageInEmeny = newWeaponHero.Attack().Damage;
@@ -131,7 +132,7 @@ Console.WriteLine(" Перенос на ближайшую точку");
 await Task.Delay(TimeSpan.FromSeconds(2));
 Console.WriteLine(" Перенос завершен");
 await Task.Delay(TimeSpan.FromSeconds(2));
-Console.WriteLine(" Локация: \nЛес Хенгельта. \nУровень опасности низкий. \nУровень монстров : 1 LVL");
+Console.WriteLine(" Локация: \n Лес Хенгельта. \n Уровень опасности низкий. \n Уровень монстров : 1 LVL");
 Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
 
 

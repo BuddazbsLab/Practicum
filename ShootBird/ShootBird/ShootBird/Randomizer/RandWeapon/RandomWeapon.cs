@@ -9,14 +9,14 @@ namespace ShootBird.Randomizer.RandWeapon
         {
             var weapons = new IWeapons[]
             {
-                new BaseballBat(),
+                new RustySword(),
                 new Crossbow(),
-                new HandGun(),
+                new RodOfSparks(),
                 new Machine(),
                 new MachineGun(),
                 new Onion(),
                 new Shotgun(),
-                new Shovel(),
+                new RodOfSparks(),
             };
 
             Random random = new();

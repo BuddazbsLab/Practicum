@@ -17,9 +17,9 @@ namespace ShootBird.Weapon.Selection
         {
             var weapons = new IWeapons[]
             {
-                new BaseballBat(),
-                new Shovel(),
-                new HandGun(),               
+                new RustySword(),
+                new WoodenCrossbow(),
+                new RodOfSparks(),               
             };
 
             var weapon = weapons[OperationType];

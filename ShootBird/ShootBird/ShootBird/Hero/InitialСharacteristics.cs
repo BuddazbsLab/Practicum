@@ -1,19 +1,31 @@
-﻿using ShootBird.Gun;
-
-namespace ShootBird.Weapon.Selection
+﻿
+namespace ShootBird.Hero
 {
-  sealed  internal class WeaponSelection
+    internal class InitialСharacteristics
     {
-        public static IWeapons IssueWeaponsToTheHeroOfYourChoice()
+        private readonly string heroName;
+        private readonly int heroAge;
+
+        public InitialСharacteristics(string heroName, int heroAge)
+        {
+            this.heroName = heroName;
+            this.heroAge = heroAge;
+        }
+
+        public string HeroName => this.heroName;
+        public int HeroAge => this.heroAge;
+
+
+        public IHeroPerson NewCharacterClass()
         {
             //Предлагаем выбрать оружие герою
-            Console.WriteLine("                     Выбери оружие");
+            Console.WriteLine("                      Выбери Класс.");
             Console.WriteLine($"╔════════════════════════════════╗");
             Console.WriteLine($"║#=#Список начального оружия: #=#║");
             Console.WriteLine($"║════════════════════════════════║");
-            Console.WriteLine($"║  [0]-Ржавый меч.               ║");
-            Console.WriteLine($"║  [1]-Деревянный арбалет.       ║");
-            Console.WriteLine($"║  [2]-Жезл Искр.                ║");
+            Console.WriteLine($"║  [0]-Маг.                      ║");
+            Console.WriteLine($"║  [1]-Воин.                     ║");
+            Console.WriteLine($"║  [2]-Лучник.                   ║");
             Console.WriteLine($"╚════════════════════════════════╝");
             Console.WriteLine(">>>");
             int operationType;
@@ -21,30 +33,32 @@ namespace ShootBird.Weapon.Selection
             {
                 if (int.TryParse(Console.ReadLine(), out operationType) & operationType < 3)
                     break;
-                Console.WriteLine("Необходимо ввести от 0 - 2!");
+                Console.WriteLine("                      Выбери Класс.");
                 Console.WriteLine($"╔════════════════════════════════╗");
                 Console.WriteLine($"║#=#Список начального оружия: #=#║");
                 Console.WriteLine($"║════════════════════════════════║");
-                Console.WriteLine($"║  [0]-Ржавый меч.               ║");
-                Console.WriteLine($"║  [1]-Деревянный арбалет.       ║");
-                Console.WriteLine($"║  [2]-Жезл Искр.                ║");
+                Console.WriteLine($"║  [0]-Маг.                      ║");
+                Console.WriteLine($"║  [1]-Воин.                     ║");
+                Console.WriteLine($"║  [2]-Лучник.                   ║");
                 Console.WriteLine($"╚════════════════════════════════╝");
                 Console.WriteLine(">>>");
             }
             if (operationType >= 0 || operationType <= 2)
             {
                 //operationType = int.Parse(Console.ReadLine());
-                AssignFirstWeapon assignFirstWeapon = new(operationType);
-                var selectedWeapon = assignFirstWeapon.AssignWeapon();
-                return selectedWeapon;
+                AssignCharacterClass assignFirstWeapon = new(operationType , HeroName, HeroAge);
+                var selectedCharacterClass = assignFirstWeapon.AssignNewCharacterClass();
+                return selectedCharacterClass;
             }
             else
             {
                 Console.WriteLine(" Доигрался!\nВыбрано оружие по умолчанию!");
-                AssignFirstWeapon assignFirstWeapon = new(0);
-                var selectedWeapon = assignFirstWeapon.AssignWeapon();
-                return selectedWeapon;
+                AssignCharacterClass assignFirstWeapon = new(0, HeroName, HeroAge);
+                var selectedCharacterClass = assignFirstWeapon.AssignNewCharacterClass();
+                return selectedCharacterClass;
             }
         }
+
+       
     }
 }

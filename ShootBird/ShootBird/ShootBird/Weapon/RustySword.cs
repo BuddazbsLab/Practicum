@@ -1,23 +1,18 @@
-﻿using ShootBird.Gun;
-
-namespace ShootBird
+﻿namespace ShootBird.Gun
 {
-    /// <summary>
-    /// Оружие.
-    /// </summary>
-    internal class HandGun : IWeapons
+    internal class RustySword : IWeapons
     {
         private readonly int endurance;
         private readonly int minDamageRange;
         private readonly int maxDamageRange;
         private readonly string weaponName;
 
-        public HandGun()
+        public RustySword()
         {
             this.endurance = 70;
             this.minDamageRange = 20;
             this.maxDamageRange = 25;
-            this.weaponName = "Пистолет";
+            this.weaponName = "Ржавый меч.";
         }
 
         public int Endurance => this.endurance;
@@ -26,7 +21,7 @@ namespace ShootBird
         public string WeaponName => this.weaponName;
 
         /// <summary>
-        /// Производим выстрел во врага.
+        /// Атака оружия.
         /// </summary>
         /// <returns>Вывод результата выстрела.</returns>
         public (int Endurance, int Damage) Attack()
@@ -48,7 +43,6 @@ namespace ShootBird
             Console.WriteLine("                                                  Получено достижение 'Оружейник!'");
             Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
         }
-
 
     }
 }

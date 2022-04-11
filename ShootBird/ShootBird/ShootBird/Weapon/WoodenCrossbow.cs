@@ -1,18 +1,19 @@
-﻿namespace ShootBird.Gun
+﻿
+namespace ShootBird.Gun
 {
-    internal class BaseballBat : IWeapons
+    internal class WoodenCrossbow : IWeapons
     {
         private readonly int endurance;
         private readonly int minDamageRange;
         private readonly int maxDamageRange;
         private readonly string weaponName;
 
-        public BaseballBat()
+        public WoodenCrossbow()
         {
             this.endurance = 70;
             this.minDamageRange = 20;
             this.maxDamageRange = 25;
-            this.weaponName = "Бита";
+            this.weaponName = "Деревянный арбалет.";
         }
 
         public int Endurance => this.endurance;
@@ -43,6 +44,5 @@
             Console.WriteLine("                                                  Получено достижение 'Оружейник!'");
             Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
         }
-
     }
 }

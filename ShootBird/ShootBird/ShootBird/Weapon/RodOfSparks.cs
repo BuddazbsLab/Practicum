@@ -1,18 +1,23 @@
-﻿namespace ShootBird.Gun
+﻿using ShootBird.Gun;
+
+namespace ShootBird
 {
-    internal class Shovel : IWeapons
+    /// <summary>
+    /// Оружие.
+    /// </summary>
+    internal class RodOfSparks : IWeapons
     {
         private readonly int endurance;
         private readonly int minDamageRange;
         private readonly int maxDamageRange;
         private readonly string weaponName;
 
-        public Shovel()
+        public RodOfSparks()
         {
             this.endurance = 70;
             this.minDamageRange = 20;
             this.maxDamageRange = 25;
-            this.weaponName = "Лопата";
+            this.weaponName = "Жезл Искр.";
         }
 
         public int Endurance => this.endurance;
@@ -43,5 +48,7 @@
             Console.WriteLine("                                                  Получено достижение 'Оружейник!'");
             Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
         }
+
+
     }
 }
