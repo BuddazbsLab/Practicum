@@ -38,18 +38,17 @@
 
         public int EnemyDamage { get; }
 
-        public int HeroAttak()
+        public void HeroAttak()
         {
             int damageByEnemy = EnemyHeals - HeroDamage;
             Console.ForegroundColor = ConsoleColor.Green;
             if (EnemyHeals > 0) { EnemyHeals = damageByEnemy; }
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"Монстр получил урон! Здоровье: {EnemyHeals} HP.");
-            return EnemyHeals;
 
         }
 
-        public int EnemyAttak()
+        public void EnemyAttak()
         {
             if (HeroArmor > 0)
             {
@@ -70,8 +69,6 @@
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Ваш герой получил урон! Здоровье: {HeroHeals} HP.");
             }
-
-            return HeroHeals;
         }
     }
 }
