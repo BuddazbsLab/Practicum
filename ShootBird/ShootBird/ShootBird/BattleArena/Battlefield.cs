@@ -29,7 +29,7 @@ namespace L.S.D.BattleArena
             this.enemyExperience = 0;
             this.heroExperience = 0;
             this.reserveWeapon = reserveWeapon;
-            this.heroArmor = 0;
+            this.heroArmor = 50;
             this.heroLvl = 0;
         }
         #endregion

@@ -111,7 +111,9 @@ else
     battlefield.ResultOfTheBattle();
     await Task.Delay(TimeSpan.FromSeconds(1));
 }
-
+Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
+Console.WriteLine($"                            Res Armor {battlefield.HeroArmor}");
+Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
 
 await Task.Delay(TimeSpan.FromSeconds(1));
 //Первый шаг после тренировочного боя
