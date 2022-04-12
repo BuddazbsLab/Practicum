@@ -100,9 +100,17 @@ namespace L.S.D.BattleArena
             }
             if (EnemyHeals <= 0)
             {
+                //Получаеи новое значение брони
+                HeroArmor = logicBattle.HeroArmor;
+                //передаем новое значение жизни и брони для проверки
                 AliveOrNot aliveOrNot = new(HeroHeals, HeroArmor);
+                //проверяем состояние героя
                 aliveOrNot.CheckingHeroAliveOrNot();
-                HeroHeals = aliveOrNot.NewHeroHeals;
+                //Присваиваем новые значения после проверки и обновляем свойства
+                if (HeroArmor < 0)
+                {
+                    HeroHeals = aliveOrNot.NewHeroHeals + HeroArmor;
+                }
                 HeroArmor = aliveOrNot.NewHeroArmor;
             }
             else
@@ -110,6 +118,7 @@ namespace L.S.D.BattleArena
                 Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
                 Console.WriteLine("                       Враг остался жив а Вы умерли. Кек :)");
                 Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
+                //Звершаем игру
                 Environment.Exit(0);
             }
 
