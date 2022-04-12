@@ -34,6 +34,7 @@ namespace L.S.D
             int initialHealthHero = initialHero.Helth;
             int initialLevelHero = initialHero.HeroLevel;
             int initArmorHero = initialHero.HeroArmor;
+            int initHeroExperience = initialHero.HeroExperience;
 
 
             await Task.Delay(TimeSpan.FromSeconds(2));
@@ -65,7 +66,7 @@ namespace L.S.D
 
             await Task.Delay(TimeSpan.FromSeconds(3));
             Console.WriteLine("\nРасслабся. Этот монстр будет тренировочным.");
-            await Task.Delay(TimeSpan.FromSeconds(4));
+            await Task.Delay(TimeSpan.FromSeconds(3));
             Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
             Console.WriteLine(" При каждом сражении в этой игре,");
             Console.WriteLine(" тебя и монстра будет переносить на специальную область для сражений.");
@@ -76,16 +77,16 @@ namespace L.S.D
             Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
 
 
-            await Task.Delay(TimeSpan.FromSeconds(8));
+            await Task.Delay(TimeSpan.FromSeconds(5));
             Console.WriteLine($"\nТебя {heroName} и монтсра {enemyName} переносит на Арену!");
 
-            await Task.Delay(TimeSpan.FromSeconds(3));
+            await Task.Delay(TimeSpan.FromSeconds(1));
             Console.WriteLine("\nДа начнется великая битва!!!!!");
 
-            await Task.Delay(TimeSpan.FromSeconds(3));
+            await Task.Delay(TimeSpan.FromSeconds(2));
             Console.WriteLine($"\nМонстр начал идти к Вам!");
 
-            await Task.Delay(TimeSpan.FromSeconds(3));
+            await Task.Delay(TimeSpan.FromSeconds(1));
             Console.WriteLine("\nБыстрей убей его!!!");
 
             //Напоминалка
@@ -97,7 +98,7 @@ namespace L.S.D
             int reserveWeapon = newWeaponHero.Attack().Endurance;
 
             //Инициализируем поле сражения
-            Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserveWeapon, initEnemyDamage);
+            Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserveWeapon, initEnemyDamage, initHeroExperience, initialLevelHero);
             
             //Выбор убить или не убить монстра
             int operationType = BeatDontbeat.MakeAChoice();

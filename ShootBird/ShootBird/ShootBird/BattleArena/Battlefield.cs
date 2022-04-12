@@ -20,17 +20,17 @@ namespace L.S.D.BattleArena
         #endregion
 
         #region Конструктор
-        public Battlefield(int initialHealthHero, int initialHealthEnemy, int heroDamageInEmeny, int reserveWeapon, int enemyDamage)
+        public Battlefield(int initialHealthHero, int initialHealthEnemy, int heroDamageInEmeny, int reserveWeapon, int enemyDamage, int initHeroExperience, int initialLevelHero)
         {
             this.heroHeals = initialHealthHero;
             this.enemyHeals = initialHealthEnemy;
             this.enemyDamage = enemyDamage;
             this.heroGunDamage = heroDamageInEmeny;
             this.enemyExperience = 0;
-            this.heroExperience = 0;
+            this.heroExperience = initHeroExperience;
             this.reserveWeapon = reserveWeapon;
             this.heroArmor = 0;
-            this.heroLvl = 0;
+            this.heroLvl = initialLevelHero;
         }
         #endregion
 
@@ -69,6 +69,11 @@ namespace L.S.D.BattleArena
             get { return this.reserveWeapon; }
             set { this.reserveWeapon = value; }
         }
+        public int HeroLevel
+        {
+            get { return this.heroLvl; }
+            set { this.heroLvl = value; }
+        }
         #endregion
 
 
@@ -77,7 +82,6 @@ namespace L.S.D.BattleArena
         /// </summary>
         public async Task StartTheBattleAsync()
         {
-            // Повторяющийся код! Плохо!
             LogicBattle logicBattle = new(HeroHeals, EnemyHeals, HeroArmor, HeroDamage, EnemyDamage);
             for (int i = 0; i < ReserveWeapon; i++)
             {
@@ -160,12 +164,21 @@ namespace L.S.D.BattleArena
         {           
             Random random = new Random();
             int getEnemyExpireance = random.Next(1, 3);
-            int newHeroExpireance = HeroExperiance + getEnemyExpireance;
+            HeroExperiance += getEnemyExpireance;
+            if (HeroExperiance >= 100)
+            {
+                Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
+                Console.WriteLine($"                          Поздравляю! Уровень героя повышен.");
+                Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
+                HeroLevel += 1;
+            }
             Console.WriteLine($" Показатели героя:");
-            Console.WriteLine($" Здоровье {HeroHeals}");
-            Console.WriteLine($" Броня {HeroArmor}");
-            Console.WriteLine($" Получено очков опыта {newHeroExpireance}");
+            Console.WriteLine($" Здоровье: [{HeroHeals}]");
+            Console.WriteLine($" Броня: [{HeroArmor}]");
+            Console.WriteLine($" Уровенеь героя: [{HeroLevel}]");
+            Console.WriteLine($" Получено очков опыта [{HeroExperiance}]");
             Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
+
         }
 
     }

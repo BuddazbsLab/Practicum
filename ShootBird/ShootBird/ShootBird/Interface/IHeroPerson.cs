@@ -7,6 +7,7 @@
         string HeroName { get; }
         int HeroLevel { get; }
         int HeroArmor { get; }
+        int HeroExperience { get; }
 
         Task CreateHeroAsync();
     }
