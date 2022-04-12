@@ -118,8 +118,38 @@ namespace L.S.D.BattleArena
                 Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
                 Console.WriteLine("                       Враг остался жив а Вы умерли. Кек :)");
                 Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
-                //Звершаем игру
-                Environment.Exit(0);
+                await Task.Delay(TimeSpan.FromSeconds(3));
+
+                //Предлагаем выбрать оружие герою
+                Console.WriteLine($"╔════════════════════════════════╗");
+                Console.WriteLine($"║#=#  Начать игру повторно?   #=#║");
+                Console.WriteLine($"║════════════════════════════════║");
+                Console.WriteLine($"║  [0]-Да.                       ║");
+                Console.WriteLine($"║  [1]-Нет.                      ║");
+                Console.WriteLine($"╚════════════════════════════════╝");
+                Console.WriteLine(">>>");
+                int operationType;
+                while (true)
+                {
+                    if (int.TryParse(Console.ReadLine(), out operationType) & operationType < 1)
+                        break;
+                    Console.WriteLine($"╔════════════════════════════════╗");
+                    Console.WriteLine($"║#=#  Начать игру повторно?   #=#║");
+                    Console.WriteLine($"║════════════════════════════════║");
+                    Console.WriteLine($"║  [0]-Да.                       ║");
+                    Console.WriteLine($"║  [1]-Нет.                      ║");
+                    Console.WriteLine($"╚════════════════════════════════╝");
+                    Console.WriteLine(">>>");
+                }
+                if (operationType == 0)
+                {
+                  await Story.NewStory();
+                }
+                else
+                {
+                    //Звершаем игру
+                    Environment.Exit(0);
+                }
             }
 
         }

@@ -90,12 +90,14 @@ namespace L.S.D
             await MyMessage.RemindAsync();
 
 
-            // Стреляем по монстру
+            // Получаем данные об оружии (урон и запас прочности либо запас стрел)
             int heroDamageInEmeny = newWeaponHero.Attack().Damage;
             int reserveWeapon = newWeaponHero.Attack().Endurance;
+
             //Инициализируем поле сражения
             Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserveWeapon);
-
+            
+            //Выбор убить или не убить монстра
             int operationType = BeatDontbeat.MakeAChoice();
             if (operationType == 0)
             {
@@ -116,6 +118,7 @@ namespace L.S.D
                 battlefield.ResultOfTheBattle();
                 await Task.Delay(TimeSpan.FromSeconds(1));
             }
+            //Получаем новые показатели героя после битвы
             int initNewHealsHero = battlefield.HeroHeals;
             int initNewArmorHero = battlefield.HeroArmor;
 
