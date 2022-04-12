@@ -26,7 +26,7 @@ namespace L.S.D.BattleArena
             this.enemyHeals = initialHealthEnemy;
             this.enemyDamage = enemyDamage;
             this.heroGunDamage = heroDamageInEmeny;
-            this.enemyExperience = 0;
+            this.enemyExperience = 99;
             this.heroExperience = initHeroExperience;
             this.reserveWeapon = reserveWeapon;
             this.heroArmor = 0;
@@ -163,20 +163,21 @@ namespace L.S.D.BattleArena
         public void ResultOfTheBattle()
         {           
             Random random = new Random();
-            int getEnemyExpireance = random.Next(1, 3);
-            HeroExperiance += getEnemyExpireance;
+            EnemyExperians +=10;
+            HeroExperiance += EnemyExperians;
             if (HeroExperiance >= 100)
             {
                 Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
                 Console.WriteLine($"                          Поздравляю! Уровень героя повышен.");
                 Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
-                HeroLevel += 1;
+                HeroLevel ++;
+                HeroExperiance -= 100;
             }
             Console.WriteLine($" Показатели героя:");
             Console.WriteLine($" Здоровье: [{HeroHeals}]");
             Console.WriteLine($" Броня: [{HeroArmor}]");
             Console.WriteLine($" Уровенеь героя: [{HeroLevel}]");
-            Console.WriteLine($" Получено очков опыта [{HeroExperiance}]");
+            Console.WriteLine($" Получено очков опыта: [{HeroExperiance}| из 100]");
             Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
 
         }
