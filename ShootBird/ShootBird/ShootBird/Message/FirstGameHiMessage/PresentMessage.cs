@@ -58,7 +58,7 @@
 ╚═════════════════════════════════════════════════════════════════════════════════╝";
 
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine(logo.ToString());
             await Task.Delay(TimeSpan.FromSeconds(6));
             Console.ForegroundColor = ConsoleColor.Yellow;

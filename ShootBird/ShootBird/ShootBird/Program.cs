@@ -90,7 +90,6 @@ int reserveWeapon = newWeaponHero.Attack().Endurance;
 //Инициализируем поле сражения
 Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserveWeapon);
 
-
 int operationType = BeatDontbeat.MakeAChoice();
 if (operationType == 0)
 {
@@ -111,9 +110,9 @@ else
     battlefield.ResultOfTheBattle();
     await Task.Delay(TimeSpan.FromSeconds(1));
 }
-Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
-Console.WriteLine($"                            Res Armor {battlefield.HeroArmor}");
-Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
+int initNewHealsHero = battlefield.HeroHeals;
+int initNewArmorHero = battlefield.HeroArmor;
+
 
 await Task.Delay(TimeSpan.FromSeconds(1));
 //Первый шаг после тренировочного боя

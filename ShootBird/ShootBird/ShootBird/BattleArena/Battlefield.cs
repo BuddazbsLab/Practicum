@@ -83,9 +83,6 @@ namespace L.S.D.BattleArena
             {
                // ататка героя
                 Console.ForegroundColor = ConsoleColor.Green;
-                await Task.Delay(TimeSpan.FromSeconds(1));
-                Console.WriteLine($"Атака героем №{i + 1}");
-                await Task.Delay(TimeSpan.FromSeconds(1));
                 logicBattle.HeroAttak();
                 EnemyHeals = logicBattle.EnemyHeals;
 
@@ -96,35 +93,40 @@ namespace L.S.D.BattleArena
                 //gunSound.HandGunSound();
 
                 //Атака монстра
-                await Task.Delay(TimeSpan.FromSeconds(1));
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Атака монстра №{i + 1}");
-                await Task.Delay(TimeSpan.FromSeconds(1));
                 logicBattle.EnemyAttak();
-                HeroHeals = logicBattle.HeroHeals;
-                
+                HeroHeals = logicBattle.HeroHeals;               
                 if (EnemyHeals <= 0) break;               
             }
             if (EnemyHeals <= 0)
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("Вы выйграли");
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                AliveOrNot aliveOrNot = new(HeroHeals, HeroArmor);
+                aliveOrNot.CheckingHeroAliveOrNot();
+                HeroHeals = aliveOrNot.NewHeroHeals;
+                HeroArmor = aliveOrNot.NewHeroArmor;
             }
-            else { Console.WriteLine("Враг остался жив а Вы умерли. Кек :)"); }
+            else
+            {
+                Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
+                Console.WriteLine("                       Враг остался жив а Вы умерли. Кек :)");
+                Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
+                Environment.Exit(0);
+            }
+
         }
         /// <summary>
         /// Результат сражения
         /// </summary>
         public void ResultOfTheBattle()
-        {
+        {           
             Random random = new Random();
             int getEnemyExpireance = random.Next(1, 3);
             int newHeroExpireance = HeroExperiance + getEnemyExpireance;
-            Console.WriteLine($"У вас осталось здоровья {HeroHeals}");
-            Console.WriteLine($"У вас осталось Брони {HeroArmor}");
-            Console.WriteLine($"Получено очков опыта {newHeroExpireance}");
-            Console.WriteLine($"Ваш уровень: {this.heroLvl}");
+            Console.WriteLine($" Показатели героя:");
+            Console.WriteLine($" Здоровье {HeroHeals}");
+            Console.WriteLine($" Броня {HeroArmor}");
+            Console.WriteLine($" Получено очков опыта {newHeroExpireance}");
+            Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
         }
 
     }

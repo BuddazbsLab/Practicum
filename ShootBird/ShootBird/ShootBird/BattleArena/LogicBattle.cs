@@ -43,8 +43,6 @@
             int damageByEnemy = EnemyHeals - HeroDamage;
             Console.ForegroundColor = ConsoleColor.Green;
             if (EnemyHeals > 0) { EnemyHeals = damageByEnemy; }
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Монстр получил урон! Здоровье: {EnemyHeals} HP.");
 
         }
 
@@ -57,8 +55,6 @@
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.ForegroundColor = ConsoleColor.Green;
                 if (HeroHeals > 0) { HeroHeals = dmageByHero; }
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Ваш герой получил урон! \nЗдоровье: {HeroHeals} HP.\nБорня {HeroArmor}");
             }
             else
             {
@@ -66,8 +62,6 @@
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.ForegroundColor = ConsoleColor.Green;
                 if (HeroHeals > 0) { HeroHeals = dmageByHero; }
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Ваш герой получил урон! Здоровье: {HeroHeals} HP.");
             }
         }
     }
