@@ -20,16 +20,16 @@ namespace L.S.D.BattleArena
         #endregion
 
         #region Конструктор
-        public Battlefield(int initialHealthHero, int initialHealthEnemy, int heroDamageInEmeny, int reserveWeapon)
+        public Battlefield(int initialHealthHero, int initialHealthEnemy, int heroDamageInEmeny, int reserveWeapon, int enemyDamage)
         {
             this.heroHeals = initialHealthHero;
             this.enemyHeals = initialHealthEnemy;
-            this.enemyDamage = 24;
+            this.enemyDamage = enemyDamage;
             this.heroGunDamage = heroDamageInEmeny;
             this.enemyExperience = 0;
             this.heroExperience = 0;
             this.reserveWeapon = reserveWeapon;
-            this.heroArmor = 50;
+            this.heroArmor = 0;
             this.heroLvl = 0;
         }
         #endregion
@@ -113,10 +113,10 @@ namespace L.S.D.BattleArena
                 }
                 HeroArmor = aliveOrNot.NewHeroArmor;
             }
-            else
+            else if(EnemyHeals > 0)
             {
                 Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
-                Console.WriteLine("                       Враг остался жив а Вы умерли. Кек :)");
+                Console.WriteLine("                          Враг оказался сильнее и убил Вас!");
                 Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
                 await Task.Delay(TimeSpan.FromSeconds(3));
 
@@ -131,7 +131,7 @@ namespace L.S.D.BattleArena
                 int operationType;
                 while (true)
                 {
-                    if (int.TryParse(Console.ReadLine(), out operationType) & operationType < 1)
+                    if (int.TryParse(Console.ReadLine(), out operationType) & operationType < 2)
                         break;
                     Console.WriteLine($"╔════════════════════════════════╗");
                     Console.WriteLine($"║#=#  Начать игру повторно?   #=#║");

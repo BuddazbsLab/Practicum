@@ -53,12 +53,14 @@ namespace L.S.D
 
             // Генерим случайное имя монтсра
             string enemyName = GeneratorNameEnemy.GenerateEnemyName();
-            // Отдаем имя нашему монстру
+            //Инициаоизируем монстра 
             HeroEnemy heroEnemy = new(enemyName);
+            int initEnemyDamage = heroEnemy.EnemyDamage;
+            // Получаем показатель здоровья монстра
+            int initialHealthEnemy = heroEnemy.EnemyHelth;
             // Ожидаем создание монстра
             await heroEnemy.CreateEnemyAsync();
-            // Получаем показатель здоровья монстра
-            int initialHealthEnemy = heroEnemy.GetEnemyHealth();
+
 
 
             await Task.Delay(TimeSpan.FromSeconds(3));
@@ -95,7 +97,7 @@ namespace L.S.D
             int reserveWeapon = newWeaponHero.Attack().Endurance;
 
             //Инициализируем поле сражения
-            Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserveWeapon);
+            Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserveWeapon, initEnemyDamage);
             
             //Выбор убить или не убить монстра
             int operationType = BeatDontbeat.MakeAChoice();
