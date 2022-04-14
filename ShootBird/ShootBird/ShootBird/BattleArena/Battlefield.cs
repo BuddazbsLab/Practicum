@@ -1,6 +1,4 @@
-﻿using L.S.D.Sound.WeaponSound;
-
-namespace L.S.D.BattleArena
+﻿namespace L.S.D.BattleArena
 {
     /// <summary>
     /// Поле сражения.
@@ -17,10 +15,11 @@ namespace L.S.D.BattleArena
         private int reserveWeapon;
         private int heroArmor;
         private int heroLvl;
+        private int heroCoin;
         #endregion
 
         #region Конструктор
-        public Battlefield(int initialHealthHero, int initialHealthEnemy, int heroDamageInEmeny, int reserveWeapon, int enemyDamage, int initHeroExperience, int initialLevelHero)
+        public Battlefield(int initialHealthHero, int initialHealthEnemy, int heroDamageInEmeny, int reserveWeapon, int enemyDamage, int initHeroExperience, int initialLevelHero, int heroCoin)
         {
             this.heroHeals = initialHealthHero;
             this.enemyHeals = initialHealthEnemy;
@@ -31,6 +30,7 @@ namespace L.S.D.BattleArena
             this.reserveWeapon = reserveWeapon;
             this.heroArmor = 0;
             this.heroLvl = initialLevelHero;
+            this.heroCoin = 0;
         }
         #endregion
 
@@ -50,7 +50,7 @@ namespace L.S.D.BattleArena
         public int HeroExperiance
         {
             get { return this.heroExperience; }
-            set { this.heroExperience = value;}
+            set { this.heroExperience = value; }
         }
         public int EnemyExperians
         {
@@ -74,6 +74,12 @@ namespace L.S.D.BattleArena
             get { return this.heroLvl; }
             set { this.heroLvl = value; }
         }
+
+        public int HeroCoin
+        {
+            get { return this.heroCoin; }
+            set { this.heroCoin = value; }
+        }
         #endregion
 
 
@@ -85,7 +91,7 @@ namespace L.S.D.BattleArena
             LogicBattle logicBattle = new(HeroHeals, EnemyHeals, HeroArmor, HeroDamage, EnemyDamage);
             for (int i = 0; i < ReserveWeapon; i++)
             {
-               // ататка героя
+                // ататка героя
                 Console.ForegroundColor = ConsoleColor.Green;
                 logicBattle.HeroAttak();
                 EnemyHeals = logicBattle.EnemyHeals;
@@ -99,8 +105,8 @@ namespace L.S.D.BattleArena
                 //Атака монстра
                 Console.ForegroundColor = ConsoleColor.Green;
                 logicBattle.EnemyAttak();
-                HeroHeals = logicBattle.HeroHeals;               
-                if (EnemyHeals <= 0) break;               
+                HeroHeals = logicBattle.HeroHeals;
+                if (EnemyHeals <= 0) break;
             }
             if (EnemyHeals <= 0)
             {
@@ -117,7 +123,7 @@ namespace L.S.D.BattleArena
                 }
                 HeroArmor = aliveOrNot.NewHeroArmor;
             }
-            else if(EnemyHeals > 0)
+            else if (EnemyHeals > 0)
             {
                 Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
                 Console.WriteLine("                          Враг оказался сильнее и убил Вас!");
@@ -147,7 +153,7 @@ namespace L.S.D.BattleArena
                 }
                 if (operationType == 0)
                 {
-                  await Story.NewStory();
+                    await Story.NewStory();
                 }
                 else
                 {
@@ -161,25 +167,27 @@ namespace L.S.D.BattleArena
         /// Результат сражения
         /// </summary>
         public void ResultOfTheBattle()
-        {           
+        {
             Random random = new Random();
-            EnemyExperians +=10;
+            GameCoin gameCoin = new GameCoin(HeroCoin, HeroLevel);
+            HeroCoin = gameCoin.AssignGameCoin();
+            EnemyExperians = random.Next(1, 7) * HeroLevel;
             HeroExperiance += EnemyExperians;
             if (HeroExperiance >= 100)
             {
                 Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
                 Console.WriteLine($"                          Поздравляю! Уровень героя повышен.");
                 Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
-                HeroLevel ++;
+                HeroLevel++;
                 HeroExperiance -= 100;
             }
             Console.WriteLine($" Показатели героя:");
             Console.WriteLine($" Здоровье: [{HeroHeals}]");
             Console.WriteLine($" Броня: [{HeroArmor}]");
             Console.WriteLine($" Уровенеь героя: [{HeroLevel}]");
-            Console.WriteLine($" Получено очков опыта: [{HeroExperiance}| из 100]");
+            Console.WriteLine($" Получено очков опыта: [{HeroExperiance} из 100]");
+            Console.WriteLine($" Получена Braghma: [{HeroCoin}]");
             Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
-
         }
 
     }

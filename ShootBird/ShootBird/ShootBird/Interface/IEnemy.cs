@@ -6,6 +6,5 @@
         string EnemyName { get; }
 
         Task CreateEnemyAsync();
-        int GetEnemyHealth();
     }
 }

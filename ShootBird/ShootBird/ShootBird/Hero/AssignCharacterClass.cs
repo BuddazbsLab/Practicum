@@ -1,6 +1,5 @@
-﻿using L.S.D.Interface;
-using L.S.D;
-using L.S.D.Hero.CharacterClass;
+﻿using L.S.D.Hero.CharacterClass;
+using L.S.D.Interface;
 
 namespace L.S.D.Hero
 {

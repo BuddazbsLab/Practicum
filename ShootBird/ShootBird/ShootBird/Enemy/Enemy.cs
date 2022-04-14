@@ -10,13 +10,17 @@ namespace L.S.D.Enemy
         private readonly int enemyHelth;
         private string enemyName;
         private int enemyDamage;
+        private int initialLevelHero;
 
-        public HeroEnemy(string enemyName)
+        public HeroEnemy(string enemyName, int initialLevelHero)
         {
             this.enemyHelth = 100;
             this.enemyName = enemyName;
             this.enemyDamage = 0;
+            this.initialLevelHero = initialLevelHero;
         }
+
+        public int InitialLevelHero => this.initialLevelHero;
 
         public int EnemyHelth => this.enemyHelth;
         public string EnemyName
@@ -38,7 +42,7 @@ namespace L.S.D.Enemy
         public async Task CreateEnemyAsync()
         {
             Random random = new Random();
-            EnemyDamage = random.Next(5,8);
+            EnemyDamage = random.Next(5, 8) * InitialLevelHero;
 
             Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════════════╗");
             Console.WriteLine("                                      Внимание!" +
@@ -47,15 +51,6 @@ namespace L.S.D.Enemy
              $"\n Здоровье: {EnemyHelth}" +
              $"\n Урон: {EnemyDamage}");
             Console.WriteLine("╚═════════════════════════════════════════════════════════════════════════════════╝");
-        }
-
-        /// <summary>
-        /// Стартовое значение зоровья.
-        /// </summary>
-        /// <returns>Значение здоровья монстра.</returns>
-        public int GetEnemyHealth()
-        {
-            return EnemyHelth;
         }
 
     }

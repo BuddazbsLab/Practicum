@@ -35,6 +35,7 @@ namespace L.S.D
             int initialLevelHero = initialHero.HeroLevel;
             int initArmorHero = initialHero.HeroArmor;
             int initHeroExperience = initialHero.HeroExperience;
+            int initHeroCoin = initialHero.HeroCoin;
 
 
             await Task.Delay(TimeSpan.FromSeconds(2));
@@ -55,12 +56,11 @@ namespace L.S.D
             // Генерим случайное имя монтсра
             string enemyName = GeneratorNameEnemy.GenerateEnemyName();
             //Инициаоизируем монстра 
-            HeroEnemy heroEnemy = new(enemyName);
-            int initEnemyDamage = heroEnemy.EnemyDamage;
-            // Получаем показатель здоровья монстра
-            int initialHealthEnemy = heroEnemy.EnemyHelth;
+            HeroEnemy heroEnemy = new(enemyName, initialLevelHero);
             // Ожидаем создание монстра
             await heroEnemy.CreateEnemyAsync();
+            int initEnemyDamage = heroEnemy.EnemyDamage;
+            int initialHealthEnemy = heroEnemy.EnemyHelth;
 
 
 
@@ -98,7 +98,16 @@ namespace L.S.D
             int reserveWeapon = newWeaponHero.Attack().Endurance;
 
             //Инициализируем поле сражения
-            Battlefield battlefield = new(initialHealthHero, initialHealthEnemy, heroDamageInEmeny, reserveWeapon, initEnemyDamage, initHeroExperience, initialLevelHero);
+            Battlefield battlefield = new(
+                                             initialHealthHero, 
+                                             initialHealthEnemy, 
+                                             heroDamageInEmeny, 
+                                             reserveWeapon, 
+                                             initEnemyDamage, 
+                                             initHeroExperience, 
+                                             initialLevelHero, 
+                                             initHeroCoin
+                                          );
             
             //Выбор убить или не убить монстра
             int operationType = BeatDontbeat.MakeAChoice();

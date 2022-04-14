@@ -8,9 +8,15 @@
         private readonly int enemyDamage;
         private readonly int heroDamage;
 
-        public LogicBattle(int heroHeals, int enemyHeals, int heroArmor, int heroDamage, int enemyDamage)
+        public LogicBattle(
+                             int heroHeals,
+                             int enemyHeals,
+                             int heroArmor,
+                             int heroDamage,
+                             int enemyDamage
+                           )
         {
-            this.heroHeals  = heroHeals;
+            this.heroHeals = heroHeals;
             this.enemyHeals = enemyHeals;
             this.heroArmor = heroArmor;
             this.enemyDamage = enemyDamage;
@@ -28,7 +34,7 @@
         {
             get { return this.heroHeals; }
             set { this.heroHeals = value; }
-        }        
+        }
 
         public int EnemyHeals
         {
@@ -41,7 +47,6 @@
         public void HeroAttak()
         {
             int damageByEnemy = EnemyHeals - HeroDamage;
-            Console.ForegroundColor = ConsoleColor.Green;
             if (EnemyHeals > 0) { EnemyHeals = damageByEnemy; }
 
         }
@@ -52,15 +57,11 @@
             {
                 HeroArmor -= EnemyDamage;
                 int dmageByHero = HeroHeals;
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.ForegroundColor = ConsoleColor.Green;
                 if (HeroHeals > 0) { HeroHeals = dmageByHero; }
             }
             else
             {
                 int dmageByHero = HeroHeals - EnemyDamage;
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.ForegroundColor = ConsoleColor.Green;
                 if (HeroHeals > 0) { HeroHeals = dmageByHero; }
             }
         }

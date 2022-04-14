@@ -8,6 +8,7 @@
         int HeroLevel { get; }
         int HeroArmor { get; }
         int HeroExperience { get; }
+        int HeroCoin { get; }
 
         Task CreateHeroAsync();
     }
