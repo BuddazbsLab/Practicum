@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace ASCII_Art
 {
@@ -22,7 +22,8 @@ namespace ASCII_Art
             Console.WriteLine("Жмакни Enter для старта...\n");
 
             while (true)
-            {
+            {               
+
                 Console.ReadLine();
 
                 if (openFileDialog.ShowDialog() != DialogResult.OK)
@@ -31,13 +32,14 @@ namespace ASCII_Art
                 Console.Clear();
 
                 var bitmap = new Bitmap(openFileDialog.FileName);
+
                 bitmap = ResizeBitmap(bitmap);
                 bitmap.ToGray();
 
                 var converter = new BitmapToASCII(bitmap);
                 var rows = converter.Convert();
 
-                foreach(var row in rows)
+                foreach (var row in rows)
                     Console.WriteLine(row);
 
                 File.WriteAllLines("images.txt", rows.Select(r => new string(r)));
@@ -49,13 +51,14 @@ namespace ASCII_Art
 
         private static Bitmap ResizeBitmap(Bitmap bitmap)
         {
-            var newHeight = bitmap.Height / WIDTH_OFFSET * MAX_WIDTH/ bitmap.Width;
-            if(bitmap.Width > MAX_WIDTH || bitmap.Height > newHeight)
+            var newHeight = bitmap.Height / WIDTH_OFFSET * MAX_WIDTH / bitmap.Width;
+            if (bitmap.Width > MAX_WIDTH || bitmap.Height > newHeight)
             {
-                bitmap = new Bitmap(bitmap, new Size(MAX_WIDTH, (int)newHeight));              
+                bitmap = new Bitmap(bitmap, new Size(MAX_WIDTH, (int)newHeight));
             }
             return bitmap;
         }
 
     }
+
 }
